@@ -1,0 +1,39 @@
+developers created repository workspace for each stream
+checkin moves changs to workspace reporistory and deliver moves it to stream
+
+whenever confilct happens - option to solve by proposed or solve by mine or utoresolve - merge
+
+
+maintain truck stream after each release
+
+
+
+immmediately remove sept workspace from trunk stream????
+
+
+ribu moved sept changes in trunk stream......create snpshot....keep truunk updated with the rleases happening every month
+
+wat is snapshot?
+
+
+flowtargets- set current - set default - save 
+chk if incoming - set current and default  - save
+
+
+get trunk workspace created
+
+keep ony 2 older versions of repositories
+
+we take snapshots after every release of that month
+
+jermyn santos- rtc contact
+
+vid3 -
+get oct into trunk workspace and then nov into trunk worspace
+
+
+chk history for each stream or trunk stream
+
+
+sofar we have created snapshots of oc tna nov in trunk stream...
+now we add new stream(will need permission)...add componenets from snapshot

@@ -1,0 +1,44 @@
+the signing bonus, stock options, and even vacation time.
+
+There’s binary trees, which can be searched in O(log(n)).
+
+often this dilemma is made worse due to not asking the right questions about the position or role at the interview
+
+If I am successful, what type of projects will I be involved in and what type of technologies/frameworks will I be exposed to? Will this role involve liaising with the business users and/or mentoring opportunities?
+What types of candidates succeed in your organization?
+Is this a mission critical project? How big is the team? What is the budget for this project?
+What are the key tasks and responsibilities involved with my role? Does this involve new development, enhancement or support work?
+
+
+Remuneration and other benefits: This is an important criteria but not the only one. You need to look long term. [E.g. weight = 30%]
+Opportunity to learn and/or work with popular, emerging and sought after technologies like (e.g. Spring, Hibernate, JSF, Ajax4jsf etc) and opportunity to acquire new skills like integration technologies (e.g. JMS, Web Service, SOA, BPM, etc), new frameworks, business skills, team leading and/or mentoring skills (i.e. one can learn more from mentoring others). By acquiring emerging and sought after skills, you can stand out from your competition and by getting more interview calls next time you start hunting for job [E.g. weight = 25%].
+
+Type of project (new project, enhancement to existing project, support): You tend to learn more on new projects. [E.g. weight = 15%]
+
+
+Brand, company culture, business acumen etc. Brand does matter - it helps you to get more interview calls next time you start hunting for job - but again what skills & experience you will be acquiring matters more. You may get more interview calls but may find it difficult to get through your interview stages if your skills are not enhanced through good hands-on experience. [E.g. weight = 10%]
+
+Type of role and opportunities (mentoring role, liaising with the business, travel etc): Would this role have active involvement with business users etc? You can learn more by mentoring and also will look good on your CV. [E.g. weight = 5%]
+
+
+Type of organization (Insurance, Finance, Software house, multi-national etc). In some types of organizations like finance, insurance etc you tend get better remuneration. In some software houses and consultancy roles you tend to acquire wider range of skills. [E.g. weight = 5%]
+
+How comprehensive the interview was. The more comprehensive the interview the better chance of working with high calibre staff. [E.g. weight = 5%].
+
+Location and lifestyle choices. [E.g. weight = 5%] .
+
+
+the single most important question in your interviewers' minds as they grill you in that little room. Despite the questions on polymorphism and heaps and virtual machines, the question they really want an answer to is ...
+Would I have a beer with this guy?
+
+
+
+
+I recommend filling in the following “preparation grid” as shown below:
+                           project1  project2 project3
+Most Challenging
+What You Learned
+Most Interesting
+Hardest Bug
+Enjoyed Most
+Conflicts with Teammates

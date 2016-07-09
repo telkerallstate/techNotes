@@ -1,0 +1,5 @@
+Examples of solutions and solution components 
+include software applications, web services, business processes, the business rules that 
+govern that process, an information technology application, a revised organizational 
+structure, outsourcing, insourcing, redefining job roles, or any other method of creating 
+a capability needed by an organization.

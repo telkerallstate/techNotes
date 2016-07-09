@@ -1,0 +1,83 @@
+accoutning basics
+
+personal	real		nominal
+		goods		salaries
+				discount
+				
+		stock
+capital
+loan acct	state govt security
+				outstanidn salaries
+		patents
+		copyright	
+				taxes
+
+debit the receiver
+credit the giver
+		debit wat comes in
+		credit wat goes out
+				debit all expenses and loses
+				credit all profits and income		
+
+concept of business entity- owner and the firm are two distinct entities by themseplves.
+
+any money where in cash or in kind introduced in the filrm by the owner is the liability of the firm
+
+money measurement concept
+only those transactions which can be expressed in terms of money are to be accounted for.for eg- value of manager cannot be accounted.
+
+going concern concept
+amt charged from profit and loss accnt each yr if the machinery is gonna last in certain time
+
+accounting period concept
+the spa of time at the end of which the financialstatements of an enterpricse are prepard .
+
+cost concept
+alll records are historicallll in nature+acquisition cost()transport cost)
+
+
+dual aspect concept
+assets = liabilities+capital
+
+revenue recognition concept
+revenue is considered to be generated at the time of sale of goods or services and not when money for the same is recei
+ved
+
+ful disclosure concept
+
+
+cnsistency conept
+fin stats
+
+conservatism concept
+it is necessary to have a vry conscious an conservatie approach while ascertaining income of the firm so that profiltsare not overstated
+
+if profits are overstated it wil lead to distribution of dividend out of capital or reduction in capiral of the filrm
+
+profitls sud not be recorded until realised but all lossed even those which may have a remote possibility are to be provided for in the books of accnt
+
+materiality concept
+
+
+objectivity concept
+
+
+general ledger is collection of the group of accnt that suppports hte valuef items sown in teh major financial statements
+
+recording of transaction is done in journal
+classificaion is done in ledger
+
+all accounts are classified into 5 categories
+
+aset 
+liability 
+capital
+profit  gain
+expneses losses
+
+
+
+
+
+
+
