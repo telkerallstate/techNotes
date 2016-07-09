@@ -1,0 +1,84 @@
+<link rel="stylesheet" type="text/css" href="http://extjs.
+cachefly.net/touch/sencha-touch-2.1.0/resources/css/sencha-touch.
+css"/>
+<script type="text/javascript" src="http://extjs.cachefly.net/
+touch/sencha-touch-2.1.0/sencha-touch-all-debug.js"></script>
+
+
+
+
+For security reasons, JavaScript (and thus Sencha Touch) is not allowed to make
+AJAX requests to other domains. This means that if your application resides on
+myCoolApp.com and you make an AJAX request to the RSS feed at boingboing.net,
+it will be denied
+Once the web browser
+loads the initial JavaScript files, they are stored on the user's machine until the cache
+is cleared. This means the application can continue to function when offline
+We can get around the same origin policy by using Sencha's JSONP proxy
+component to send the request
+
+
+This brings us to another issue that we will run into with RSS feeds: they are
+formatted in XML instead of JSON. Since we need the JSONP store for cross-site
+requests and a JSON-encoded response for our callback function to process, XML
+won't work for us without a bit more fiddling.
+This basically gives us two options. The first option would be to use another
+programming language to write something that would make the proxy request
+for us. This would include languages such as PHP, Ruby, ASP, and Perl, which
+run on the local server along with our application and are not under the same
+security restrictions as JavaScript
+
+The Yahoo Query Language (YQL) was developed as a way to search open data
+sources in a language similar to Structured Query Language (SQL), a standard
+language for dealing with database information.
+
+
+http://developer.yahoo.com/yql/.
+
+YQL console (located at: http://developer.yahoo.com/yql/console/)
+
+Sencha Cmd. Using this new toolset, we can quickly generate the basic skeleton of a new application, create controllers and models, and compile our application into a native application for iOS and Android
+
+
+The packager.json file is in the root directory of our application folder and it is
+a template originally generated for us by Sencha Cmd
+
+
+
+
+Building compiled applications in Android follows a similar pattern as the one
+we used for iOS:
+1. We create an Android signing certificate.
+2. We create a package configuration file for Sencha Cmd to use.
+3. We run the Sencha Cmd packager to create an application.apk file,
+which will run on Android devices or the Android emulator for testing
+
+
+there are a number of disadvantages to local storage
+Sench.io
+
+This problem is that Carousel is actually a collection of panels and what we really
+need is something that will pull records from our data store the way a list view does.
+In order to do this we need to override the Carousel component and add some
+additional behavior
+
+
+More and more companies are allowing access to their programs and data through an Application Programming Interface or API. These APIs include things such as:
+•
+Maps via Google, Yahoo, and other providers
+•
+Music applications such as Rdio and Spotify
+•
+Location aware data providers such as Foursquare
+•
+Social networks such as Facebook and Google Plus
+•
+Photo services such as Flickr and Picassa
+
+
+
+Unlike Sencha Touch which is built to work only on web kit browsers, jQuery Mobile will run on pretty much anything as long it supports HTML5 standard
+
+
+Sencha Touch’s optimization is probably this single best thing that makes it shine that much usefuls
+Hybrid App is a combination of native app and mobile web app concepts. Typically the native code is provided by a wrapper framework (like Phonegap) which bridges a gap between native side and a JavaScript API so that the app’s JavaScript code can perform native functions such as taking a picture with the camera.
