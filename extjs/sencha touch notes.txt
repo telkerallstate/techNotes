@@ -82,3 +82,5 @@ Unlike Sencha Touch which is built to work only on web kit browsers, jQuery Mobi
 
 Sencha Touch’s optimization is probably this single best thing that makes it shine that much usefuls
 Hybrid App is a combination of native app and mobile web app concepts. Typically the native code is provided by a wrapper framework (like Phonegap) which bridges a gap between native side and a JavaScript API so that the app’s JavaScript code can perform native functions such as taking a picture with the camera.
+
+testing here
