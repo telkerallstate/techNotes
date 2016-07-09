@@ -1,0 +1,59 @@
+What is the default font used in iText, and can I change it? The default font
+in iText is Helvetica with size 12 pt. There’s no way to change this. If you
+need objects with another default font, just create a factory class that produces
+objects with the font of your choice.
+
+
+
+
+When you add a PdfPTable to a Document, only complete rows are
+added. If you have a table with three columns and your final row has only
+two cells, the row won’t be added unless you use the method PdfPTable.
+completeRow().
+
+
+You don’t have to worry about creating rows; iText creates them for you. Just make
+sure you’re adding the correct number of cells.
+
+
+
+Is it possible to have the column width change dynamically based on the content
+of the cells? PDF isn’t HTML, and a PdfPTable is completely different from an
+HTML table rendered in a browser; iText can’t calculate column widths
+based on the content of the columns.
+
+
+
+PdfPTable table = new PdfPTable(3);
+table.setWidthPercentage(288 / 5.23f);
+table.setWidths(new int[]{2, 1, 1});
+
+
+table.setTotalWidth(288);
+table.setLockedWidth(true);
+table.setWidths(new float[]{2, 1, 1});
+
+PdfPTable table =
+new PdfPTable(new float[]{ 2, 1, 1 });
+table.setWidthPercentage(55.067f);
+
+
+Internally, PdfPCell content is kept inside a ColumnText object
+
+
+
+cell.setPadding(10);
+
+table.addCell(
+"different padding for left, right, top and bottom");
+cell.setPaddingLeft(20);
+cell.setPaddingRight(50);
+cell.setPaddingTop(0);
+cell.setPaddingBottom(5);
+
+
+
+setFixedHeight()
+setNoWrap(true)
+
+pg106

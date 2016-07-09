@@ -1,0 +1,58 @@
+Earlier SOA used COM or ORB based on CORBA specifications and recent SOA stress on web 
+services using standard description (WSDL), discovery (UDDI) and messaging (SOAP).
+
+
+. I have seen 
+people saying that EAI is a thing of past now SOA is here, it is just like saying 
+“transportation is a thing of past now road is here”. 
+
+
+A key difference between hub/spoke and bus topology is that for the bus architecture, the integration engine that performs message transformation and routing is distributed to the application adapters rather than centralizing it to a single 'hub'.". The bus architecture requires an application adapter to run on the same platform as the original applications. Since each adapter has an integration engine and runs on same platform on which source and target applications run, this scales much better and is relatively complex to maintain compared to hub/spoke topology
+
+For bus design(ESB): the load of data transformation and routing is carried out by the 'ESB adapters' at each spoke systems' entry into the bus.  Here the bus is more of a messaging conduit serving the spoke systems without having the pressure of middleware tasks (data xform & routing) - hence it is multiple times more scalable. 
+
+ The main advantage of ESB is that it costs much less then hub/spoke or bus based product suits, and is standards based.
+
+
+
+ two major EAI architecture models - Hub and Spoke (or Message Broker model) and Message Bus model.
+
+
+
+This SPOKE is nothing but the queues/topics created on the HUB.
+TIBCO (EMS) and IBM (MQ series) are the typical software used in this model to provide the HUB.
+
+
+A message bus removes the concept of centralized messaging server for messaging
+ The integration engine is to be hosted by the client itself  so the transformation and routing etc are handled by the client side.
+This component which does the message format conversion is normally called the Adapter.
+The advantage with this model is the scalability
+TIBCO RV can be used for implementing the Message Bus.
+
+
+
+
+ESB Characteristics
+
+Canonical message format; typically XML, often standards-based
+The message is the contract between systems
+Each integrated system has an adapter to translate from the application format to the canonical format
+Each system is decoupled by a ‘messaging bus’
+ESB architecture is usually stateless; state is attached to the message
+
+
+
+
+There is up front overhead associated with the ESB architecture, including:
+Defining canonical message format.  This is not an easy process since you need to define a message that suits the different needs of the applications you are integrating.  Typically there is a common section for all applications and then additional payloads or attachments to allow for varied content.
+Defining adapter architecture. Given that you create an adapter for each application, you’ll want to make it as standard as possible so that it can be stamped out quickly for new applications. Typically the adapter takes care of data translation, validation, message routing, etc.
+
+
+
+Hub and Spoke Characteristics
+
+All systems integrated from a single location; the Hub
+
+Usually, work application data formats directly; no canonical message
+State is maintained in a shared database
+To scale the architecture, the hub is clustered

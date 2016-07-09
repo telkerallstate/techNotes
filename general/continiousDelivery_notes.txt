@@ -1,0 +1,44 @@
+Developers used to a long cycle time may need to change their mindset when working in a CD environment. It is important to understand that any code commit may be released to customers at any point
+
+
+Using NoSQL can eliminate the step of data migrations and schema changes,
+
+
+
+Continuous delivery is enabled through the deployment pipeline. The purpose of the deployment pipeline has three components: visibility, feedback, and continually deploy
+
+
+The practice of automatically deploying every successful build directly into production is
+generally known as Continuous Deployment
+
+The notion of Continuous Delivery is a slight variation on the idea of Continuous Deployment
+
+With Continuous Delivery, any and every successful build that has
+passed all the relevant automated tests and quality gates can potentially be deployed into production
+via a fully automated one-click process, and be in the hands of the end-user within minutes
+
+
+And since the trust you place in your CI server depends to a great extent on the quality of your tests, the
+team needs to place a very strong emphasis on high quality tests and testing practices
+
+
+Jenkins comes with
+support for Subversion and CVS out of the box, but you will need to install the Jenkins Git plugin to be
+able to complete the rest of this tutorial
+
+
+build process
+This may involve simply compiling your source code
+and running your unit tests. Or you might want a build job to do other related tasks, such as running your
+integration tests, measuring code coverage or code quality metrics, generating technical documentation,
+or even deploying your application to a web server. A real project usually requires many separate but
+related build jobs
+
+
+
+Make sure this is the URL of your fork, and not of the original repository: it should have the form
+git@github.com:<username>/game-of-life.git, where <username> is the username for your own
+GitHub account
+
+
+

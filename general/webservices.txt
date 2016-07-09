@@ -1,0 +1,634 @@
+modern web services, which typically deliver XML or JSON payloads instead
+of HTML ones.
+
+Yet two important and related shifts in emphasis have occurred since this book was first
+published:
+
+The consumers or clients of web services are increasingly written in JavaScript,
+particularly in the jQuery dialect, and these clients naturally prefer response payloads
+in JSON (JavaScript Object Notation) rather than in XML
+
+REST-style services are increasingly popular among familiar sites such as eBay,
+Facebook, LinkedIn, Tumblr, and Twitter.
+
+
+The SOAP WS supports both remote procedure call (i.e. RPC) and message oriented middle-ware (MOM) integration styles. The Restful Web Service supports only RPC integration style.
+
+The SOAP WS permits only XML data format
+The focus is on accessing the named operations and exposing the application logic as a service
+
+ The REST permits multiple data formats like XML, JSON data, text, HTML, etc
+he focus is on accessing the named resources and exposing the data as a service
+
+
+REST based Web service is preferred due to its simplicity, performance, scalability, and support for multiple data formats. SOAP is favored where service requires comprehensive support for security and transactional reliability
+
+Web service is an implementation technology and one of the ways to implement SOA.
+You can build SOA based applications without using Web services But what Web services offer is the standards based  and platform-independent service
+
+different approaches to developing a SOAP based Web service
+contract-first approach
+ contract-last approach
+
+
+The best practice is to use "contract-first".
+
+JAX-WS supports both message-oriented web services as well as RPC-oriented web
+services
+
+A JAX-WS web service can be implemented either using an EJB 3 endpoint or using a servlet
+endpoint. It should be noted that both EJB based endpoints and POJO based endpoints will be
+wrapped by a servlet.
+Both servlet-based and EJB-based endpoints can access the MessageContext of a web
+service context which contains, for instance, the following things:
+• Servlet request object (type: javax.servlet.http.HttpServletRequest)
+• Servlet response object (type: javax.servlet.http.HttpServletResponse)
+• HTTP request headers (type: java.util.Map)
+One thing that deserves special mentioning is that servlet-based endpoints additionally can access a
+servlet context (type: javax.servlet.ServletContext).
+
+JAX-WS 2.0 allows for direct sending of XML over HTTP, thus supporting RESTful web
+services.
+
+Both servlet endpoints and EJB endpoints can have an object implementing the WebServiceContext
+interface injected using the @Resource annotation
+
+
+Only one thread at a time is allowed to execute in an EJB endpoint instance.
+
+
+JAX-WS supports asynchronous invocation of
+web services. Two models for response
+notification are provided: Callback and polling
+
+
+JAX-WS supports two WS-I compliant WSDL
+styles: RPC/Literal and Document/Literal
+wrapped.
+
+
+
+Web Services Metadata Annotations
+WebService
+WebMethod
+OneWay
+WebParam
+WebResult
+HandlerChain
+SOAPBinding
+
+
+JAX-WS Annotations
+BindingType
+RequestWrapper
+ResponseWrapper
+ServiceMode
+WebEndpoint
+WebFault
+WebServiceFeature
+WebServiceClient
+WebServiceProvider
+WebServiceRef
+WebServiceRefs
+Action
+FaultAction
+
+
+
+
+JAXB Annotations
+XmlRootElement
+XmlAccessorType
+XmlType
+XmlElement
+
+
+Common Annotations
+Resource
+PostConstruct
+PreDestroy
+
+Web Service Feature Annotations
+Addressing
+MTOM
+RespectBinding
+
+
+JAX-WS 2.1 introduces the notion of features. A feature is associated with certain functionality or
+behaviour. The three standard features introduced are:
+• AddressingFeature
+• MTOMFeature
+• RespectBindingFeature
+
+
+JAX-WS architecture; the main components (in green). chk it
+
+
+
+JAX-WS supplies the following three tools:
+- APT (annotation processing tool)
+Compiles Java source files and generates any
+additional classes needed to make an
+@WebService annotated class a Web service.
+- wsgen
+Processes a compiled @WebService annotated
+class and generates the necessary classes to make
+it a Web service.
+- wsimport
+Generates, from WSDL documents, either client
+or server-side service endpoint interfaces.
+
+
+when a web service client calls an EJB-based web service it calls it as a web service client - not an EJB client, so there is no propagation of EJB transactions from the client over the HTTP/SOAP link.
+
+
+The point is that the client (java or non-java) calls the endpoint as a web service client (not as an ejb-client). To the client it makes no difference whether the endpoint is implemented as a servlet-based endpoint or an ejb-based endpoint. 
+
+
+
+
+Types– a container for data type definitions using some type system (such as XSD).
+Message– an abstract, typed definition of the data being communicated.
+Operation– an abstract description of an action supported by the service.
+Port Type–an abstract set of operations supported by one or more endpoints.
+Binding– a concrete protocol and data format specification for a particular port type.
+Port– a single endpoint defined as a combination of a binding and a network address.
+Service– a collection of related endpoints.
+
+
+
+
+if my web service should be deployed as a JAX-WS servlet endpoint or an SSB EJB endpoint
+
+
+REST has no official standards, comparatively few toolkits, and uneven
+software libraries among programming languages
+
+
+SOAP originally stood for Simple Object Access Protocol and then, by serendipity but
+never officially, might have stood for Service-Oriented Architecture (SOA) Protocol.
+
+
+JSON clearly has the upper
+hand with data receivers written in JavaScript because a JSON document is the text
+representation of a native JavaScript object
+
+
+web services are available over HTTP, a
+nonpropriety protocol that has become standard
+
+In the Web, HTTP is both
+a transport protocol and a messaging system because HTTP requests and responses are
+messages.
+
+
+Sample HTTP status codes and their meanings
+Status code In English Meaning
+200 OK Request 			OK
+303 See Other 			Redirect
+400 Bad Request 		Request malformed
+401 Unauthorized 		Authentication error
+403 Forbidden 			Request refused
+404 Not Found 			Resource not found
+405 Method Not Allowed 		Method not supported
+415 Unsupported Media Type 	Content type not recognized
+500 Internal Server Error 	Request processing failed
+
+
+HTTP verbs and their CRUD operations
+HTTP verb CRUD operation
+POST 	Create
+GET 	Read
+PUT 	Update
+DELETE 	Delete
+
+Modern browsers generate only GET and POST requests.
+
+
+JAW-WS is an API used mostly for SOAP-based services but can be used for REST-style
+services as well
+
+
+In an HTTP request, the requester can express a preference for the MIME type of
+the returned representation
+text/html
+application/json
+
+
+
+An XML schema may declare complex type which describe how elements that contain other
+elements are organized. The content pattern for the <complextType> element is:
+...
+<complexType name="Person" abstract="true">
+<sequence>
+<element name="firstName" type="string" nillable="false" />
+<element name="lastName" type="string" nillable="false" />
+<element name="age" type="int"/>
+</sequence>
+<attribute name="type" type="string" use="optional" default="ordinary"/>
+</complexType>
+...
+
+
+
+
+XML schema supports inheritance of complex types in a manner similar to inheritance found in
+object-oriented programming. There are two types of complex type inheritance:
+• Extension
+An extended type inherits the elements and attributes of the base type and adds new ones.
+• Restriction
+The extended type redefines the elements and/or attributes of the base type it wishes to
+retain and omits the ones it does not want to retain
+
+
+
+“Literal” means that the XML document fragment can be validated against its XML schema.
+Messaging modes using the literal encoding are:
+• Document/Literal
+• RPC/Literal
+
+
+Unlike Document/Literal, with which the Body element of the SOAP message may contain any
+valid XML data, SOAP defines a standard XML format for RPC-style messaging
+
+
+
+SOAP messages must be sent using either HTTP/1.0 or HTTP/1.1, where HTTP/1.1 is
+preferred.
+• A HTTP request message must be sent using the HTTP POST method
+The 4xx HTTP status codes must be used when there is a problem with the format of a
+request.
+• The HTTP status code “400 Bad Request” should be used when a HTTP request is
+malformed.
+• The HTTP status code “405 Method not Allowed” should be used when the method of a
+HTTP request message is not POST.
+• The HTTP status code “415 Unsupported Media Type” should be used when the value of the
+Content-Type HTTP header field is not permitted by its WSDL description
+
+
+
+
+Thus, a <part> element inside a <message> may declare a type attribute or an element attribute.
+• When the <message> is to be used with an RPC web service, use the type attribute.
+• When the <message> is to be used with a document style web service, use the element
+attribute.
+
+
+• The concrete protocols to use, such as HTTP and SOAP.
+• The messaging style (RPC or Document).
+• The encoding style (Literal or SOAP Encoding).
+
+
+
+
+WSDL has four transmission primitives that an endpoint can support:
+• One-way. The endpoint receives a message.
+• Request-response. The endpoint receives a message, and sends a correlated message.
+• Solicit-response. The endpoint sends a message, and receives a correlated message.
+• Notification. The endpoint sends a message
+Although the base WSDL structure supports
+bindings for these four transmission primitives, WSDL only defines bindings for the One-way and
+Request-response primitives.
+
+
+UDDI is a web service that uses SOAP 1.1 over HTTP and Document/Literal encoding and the
+request/response messaging mode
+
+
+
+There are two APIs for accessing information in a UDDI web service:
+• The UDDI Inquiry API
+Used to search and read data in a UDDI registry.
+• The UDDI Publishing API
+Used to add, modify and delete data in a UDDI registry
+
+
+JAX-WS maps the parameters of the method call to XML using JAXB and inserts them into
+the SOAP message
+
+API 		Description 				Function in the I-Stack
+JAX-WS 		Java API for XML Web Services 		API for creating web services.
+JAXB 		Java Architecture for XML 		Binding Marshaling of Java objects to
+							XML representation and
+							unmarshaling of XML
+							representations to Java objects.
+StAX 		Streaming API for XML 			Reading and writing of XML
+							documents.
+SAAJ 		SOAP with Attachments 			API for Java Facilitates production and
+							consumption of SOAP messages
+							with attachments
+
+
+
+JAX-WS supports asynchronous invocation of
+web services. Two models for response
+notification are provided: Callback and polling
+
+
+Web services can be invoked using both
+generated classes (static clients) and
+dynamically created javax.xml.ws.Service and
+javax.xml.ws.Dispatch instances
+
+
+JAX-WS allows for bypassing of the automatic
+WSDL generation, instead using a static WSDL
+document.
+
+
+
+
+The following diagram gives an overview of relationships between the class in the Provider SPI and
+other classes in the JAX-WS implementation
+pg143
+
+
+
+
+
+@WebService(
+name = "Calculator",
+serviceName = "CalculatorService",
+targetNamespace = "http://www.ivan.com/calculator",
+wsdlLocation="CalculatorService.wsdl")
+@SOAPBinding(
+parameterStyle=SOAPBinding.ParameterStyle.WRAPPED,
+style=SOAPBinding.Style.DOCUMENT,
+use=SOAPBinding.Use.LITERAL)
+public class Calculator
+{....
+
+
+
+
+
+
+In order to be able to determine whether or not the JAXB bean classes are used or not, you can add
+some println statements and a default constructor, like in this example
+pg152
+
+
+
+Dynamic clients can choose to work either with protocol-specific message structures, e.g. SOAP
+messages for the SOAP protocol binding, or with message payloads, which in the case of SOAP
+would be the contents of the SOAP body in a message.
+
+
+
+
+A service using a SOAP/HTTP binding can use the following three mechanisms for maintaining a
+session:
+• Cookies
+• URL Rewriting
+• SSL Sessions
+The WS-I Basic Profile says the following about stateful web services:
+• BP allows a service to use HTTP cookies to maintain sessions.
+• BP discourages a service to rely on the use of cookies for maintaining a state.
+
+
+
+
+
+Every request to a REST web service happens in complete isolation. The server does not
+maintain any state associated to a client between requests
+
+
+
+
+JSON web services are web services that uses the JSON encoding format instead of, for instance,
+XML. Such web services can be JAX-WS web services or REST web services.
+REST web services typically allow for the resource representation to be in a format selected by the
+client at the time of the request. Possible formats include XML, JSON etc.
+
+
+The following figure, from the JAXB specification, shows XML schema built-in atomic data types
+and their default mapping to Java
+pg194
+
+
+
+
+Services and APIs of the Java EE Platform
+The following are some examples of services provided by the Java EE platform:
+• Resource management.
+• Lifecycle management (EJB and servlets).
+• Distributed communication (EJB).
+• Threading (EJB).
+• Scaling (EJB).
+• Transaction management (EJB).
+• Infrastructure for components (servlets).
+• Infrastructure for communication (servlets).
+• Infrastructure for session management (servlets).
+
+
+
+
+Transport level security refers to securing the connection between a web service and a client
+application using one or both of the following mechanisms:
+• HTTP basic authentication.
+• Secure Socket Layer (SSL).
+HTTP Basic Authentication
+HTTP Basic Authentication between a client and a web service is performed in the following steps:
+• The client sends a user name and a password.
+• The web service authenticates the client and returns an authentication header.
+• The client includes the authentication header in all subsequent requests
+
+Secure Socket Layer
+Secure Socket Layer provides confidentiality and integrity by encrypting all the data sent between a
+client and a web service at the transport layer.
+SSL provides two modes of authentication; unilateral authentication and mutual authentication
+
+
+
+Message Level Security
+Message level security refers to applying one, or both, of the following to a message sent between a
+web service and a client:
+• Digitally signing the message.
+• Encrypting whole or part of the message
+
+
+
+The client of the EJB web service is implemented in a manner similar to that of the servlet-based
+web service client
+
+Adding SSL to the EJB-based web service, will not only cause the access to the actual web service
+be encrypted, but the access to the WSDL as well.
+
+
+
+
+The following are examples of transport mechanisms that will have an impact on security
+requirements of web services:
+• JMS (Java Messaging Service)
+• HTTP
+• SMTP (mail)
+
+
+
+
+Web services can be configured in the following different ways:
+• Annotations.
+Common for both servlet and EJB based web services. Please refer to the section on web
+service annotations above for a detailed descriptions of the different annotations.
+Configuration of data binding, handled by JAXB, is also done using annotations.
+• The webservices.xml deployment descriptor.
+Also common for both servlet and EJB based web services. Overlaps configuration with
+annotations and can be used to override or augment the annotation configurations.
+Not required.
+• The web.xml deployment descriptor.
+Configuration specific to servlet based web services. Not required.
+• The ejb-jar.xml deployment descriptor.
+Configuration specific to EJB based web services. Not required.
+
+
+
+
+The following table describe the relationships between elements of the webservices.xml
+deployment descriptor and the JAX-WS @WebService annotation.
+
+Deployment Descriptor 		Element WebService Annotation
+<webservice-description> 	One per WSDL document.
+<port-component> 		One per @WebService annotation.
+<wsdl-file> 			@WebService.wsdlLocation
+<port-component-name> 		@WebService.name
+<wsdl-service> 			@WebService.serviceName
+<wsdl-port> 			@WebService.portName
+
+
+
+
+Servlet-Based Web Service Configuration Example
+pg263
+EJB-Based Web Service Configuration Example
+pg266
+
+
+
+
+Web service clients can be configured in the following different ways:
+• Annotations.
+Usable by all kinds of client.
+• In the web.xml deployment descriptor.
+For web service clients that are servlets.
+• In the ejb-jar.xml deployment descriptor.
+For web service clients that are EJBs.
+• In the application-client.xml deployment descriptor.
+For standalone applications.
+• Programmatically.
+
+
+Packaging of Web Services
+
+Port components can be packaged in two different ways, depending on what kind of service
+implementation bean is used:
+• In a WAR file.
+Service implementation bean must be a JAX-WS Service Endpoint.
+• In a EJB-JAR file.
+Service implementation bean must be a Stateless Session EJB
+pg277
+
+
+
+JavaEE web service clients are packaged in the same way as web services
+<service-endpoint-interface> @WebService.endpointInterface
+
+
+
+A web service can be deployed in three different ways:
+• As a servlet endpoint.
+Deployed as a regular web-application in a WAR file.
+• As a stateless EJB endpoint.
+Deployed as EJB modules.
+• In an enterprise application.
+A web service module in an enterprise application is contained in either a web application
+module (WAR file) or an EJB module
+
+
+
+
+Service specific exceptions are all checked exceptions, except java.rmi.RemoteException and all its
+subclasses. Service specific exceptions should, in the WSDL file for the service, have
+corresponding fault declared in the corresponding operation, both in the abstract interface and in the
+binding of the service.
+
+
+
+Messaging systems, such as JMS, provide reliable messaging for business transactions. However,
+when messages are to cross domains, for instance from one company to another, problems may
+arise due to the use of different messaging products.
+- JMS bridge will use soap to communicate
+
+
+
+Design an Asynchronous Document-Style Web Service
+pg393
+
+
+
+The forwarding behaviour of a SOAP node is described in the following table
+pg42
+
+
+
+Service Provider Class
+/**
+* This class implements a web service that processes strings.
+* The endpoint is implemented as a provider that receives and processes
+* message payloads (SOAP messages in this case), as opposed to web service
+* endpoint using the @WebService interface, which provides a service
+* endpoint interface and which receives already unmarshalled parameters.
+*/
+
+The service provider class is significantly different from the class implementing the web service
+
+
+A JAX-WS web service client can be either a dynamic client, for which no artifacts have been
+generated, or a static client for which a set of artifacts have been generated
+
+
+
+ JAX-WS and JAX-RPC are similar to RMI and CORBA, except they use the SOAP protocol;
+
+
+
+
+There are three APIs for accessing web services: generated stubs, dynamic proxies, and the Dynamic Invocation Interface (DII). When JAX-RPC is accessed from a Java EE/EJB 3.1 environment, the decision to use a dynamic proxy or a stub is up to the specific container on which you are running. In this case, however, a dynamic proxy will most likely be used, because a stub is not portable between Java EE platforms
+ In Step 1, the client invokes a method on the JAX-RPC proxy that implements the service endpoint interface. The method invocation is transformed into a SOAP message that is sent to the server in Step 2. In Step 3, the web service processes the request and sends the results back as a SOAP response message in Step 4. In Step 5, the SOAP response message is transformed into either a return value or an exception (if it was a SOAP fault) and is then returned to the client.
+An endpoint interface is a plain Java interface that extends the java.rmi.Remote interface. All methods on the service endpoint interface must throw RemoteException, although the bean implementation class is not required to.
+In addition to the service endpoint interface, the JAX-RPC compiler also creates a service interface, which is used to get an instance of the proxy at runtime. The service interface is based on the <service> element of the WSDL document.
+
+
+
+ Invocations on web services do not participate in the caller’s transaction context!
+
+
+
+
+The complete JAX-RPC mapping file is too complicated to discuss in detail. Don’t worry, though; you normally don’t write these by hand. A Java EE implementation will provide tools to generate these files for you. Also, the JAX-RPC mapping file is no longer used in JAX-WS
+
+
+The WSDL, JAX-RPC mapping, and webservices.xml files sure are a lot of things to define just to expose your stateless EJB as a web service. It should be easier to publish an EJB as a web service—and it is. One of the goals of the JAX-WS specification was to make the JAX-RPC API and deployment model easier to use
+
+
+
+
+
+ A typical OO approach would look like this:
+
+Account mainAccount = database.loadAccount(mainId);
+Account lesserAccount = database.loadAccount(lesserId);
+
+mainAccount.mergeWith(lesserAccount);
+
+mainAccount.save();
+lesserAccount.delete();
+
+Whereas the SOA equivalent I've seen looks like this:
+
+Account mainAccount = accountService.loadAccount(mainId);
+Account lesserAccount = accountService.loadAccount(lesserId);
+
+accountService.merge(mainAccount, lesserAccount);
+// save and delete handled by the service
+
+Object-oriented programming (OOP) focuses on creating objects that contain both state and behavior. Service-oriented programming (SOP) builds on top of OOP, allowing services to be built using OO techniques. 

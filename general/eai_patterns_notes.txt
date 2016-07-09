@@ -1,0 +1,110 @@
+hot and growing topic: integration using messaging.
+
+
+Why use messaging? As with any
+sophisticated solution, there is no one simple answer. The quick answer is that messaging is more
+immediate than File Transfer, better encapsulated than Shared Database, and more reliable than
+Remote Procedure Invocation.
+
+Thread Management
+Rather than blocking to wait for a reply, the caller can use a callback that will alert the
+caller when the reply arrives
+With callbacks, the only threads that block are a small, known number of
+listeners waiting for replies. This leaves most threads available for other work and defines
+a known number of listener threads that can easily be re-established after a crash.
+
+challenges are inherent in the asynchronous model.
+
+Complex programming 
+For example, the equivalent of a simple method call can
+require a request message and a request channel, a reply message and a reply channel, a
+correlation identifier and an invalid message queue
+
+Synchronous scenarios. Not all applications can operate in a send and forget mode. If a user
+is looking for airline tickets, he or she is going to want to see the ticket price right away,
+not after some undetermined time. Therefore, many messaging systems need to bridge
+the gap between synchronous and asynchronous solutions
+
+
+Performance.For example, if an integration solution needs to synchronize information
+between two exiting systems, the first step is usually to replicate all relevant information
+from one system to the other. For such a bulk data replication step, ETL (extract,
+transform, and load) tools are much more efficient than messaging. Messaging is best
+suited to keeping the systems in sync after the initial data replication
+
+
+Why is an n-tier architecture considered application distribution and not application integration?
+First, the communicating parts are tightly coupled—they dependent directly on each other, so
+that one tier cannot function without the others. Second, communication between tiers tends to
+be synchronous. Third, an application (n-tier or atomic) tends to have human users that will only
+accept rapid system response
+
+In contrast, integrated applications are independent applications that can each run by itself, but
+coordinate with each other in a loosely coupled way
+
+
+
+The apparent benefits of integrating systems using an asynchronous messaging solution have
+opened up a significant market for software vendors creating messaging middleware and
+associated tools.  fourcategories:
+Operating Systems. Microsoft Message Queuing..Similarly, Oracle
+offers Oracle AQ as part of its database platform.
+Application Servers - JMS implementation in J2EE application servers
+EAI Suites - proprietary—but functionally rich—suites
+that encompass messaging, business process automation, workflow, portals, and other
+functions.
+Web Services Toolkits - A growing number of vendors offer tools that
+implement routing, transformation, and management of web services-based solutions
+
+
+
+
+First of all, writing business applications is hard. Creating a single, big application to run a
+complete business is next to impossible. The ERP vendors have had some success at creating
+larger-than-ever business applications. The reality, though, is that even the heavyweights like
+SAP, Oracle, Peoplesoft and the like only perform a fraction of the business functions required in
+a typical enterprise
+
+
+
+we repeatedly came across the following six types of integration projects:
+• Information Portals
+• Data Replication
+• Shared Business Functions
+• Service-Oriented Architectures
+• Distributed Business Processes - BPM
+• Business-to-Business Integration
+
+
+Service-oriented architectures (SOAs) blur the line between integration and distributed
+applications.
+
+
+
+
+TCP/IP is a connection-oriented protocol.Before any data can be transferred, a connection has to be established first.
+TCP/IP protocol has wide support so that we can connect to pretty much any computer
+connected to the network regardless of the operating system or programming language it uses.
+However, the platform independence works only for very simple messages: byte streams
+
+
+
+
+In order to make the solution more loosely coupled we can try to remove these dependencies one
+by one. We should use a standard data format that is self-describing and platform independent,
+such as XML. Instead of sending information directly to a specific machine we should send it to
+an addressable “channel”. A channel is a logical address that both sender and receiver can agree
+on the same channel without being aware of each other’s identity. Using channels resolves the
+location-dependency, but still requires all components to be available at the same time if the
+channel is implemented using a connection-oriented protocol.. In order to remove this temporal
+dependency we can enhance the channel to queue up sent requests until the network and the
+receiving system are ready. To support queuing of requests inside the channel, we need wrap
+data into self-contained messages so that the channel knows how much data to buffer and deliver
+at any one time. Lastly, the two systems still depend on a common data format. We can remove
+this dependency by allowing for data format transformations inside the channel. If the format of
+one system changes we only have to change the transformer and not the other participating
+systems. This is particularly useful if many applications send data to the same channel.
+
+Mechanisms such as a common data format, queuing channels, and transformers help turn a
+tightly coupled solution into a loosely coupled solution
+

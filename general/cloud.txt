@@ -1,0 +1,46 @@
+cloud computing - separation of application and OS and hardware
+
+
+virtualization is part of cloud computing
+
+googledoc - try it
+
+load balancing in cluster
+
+in mainframe env ..all the processing happens on mainframe server which are connected to multiple dumb terminals
+
+
+terminal services server - allows terminal services clients - thin clients
+
+application servers - (not webapps) - installed on TS - the thin client jst openup only the software install on applicaiotn server
+
+virtualization software
+	client installed, hypervisor
+
+
+virtualbox/vmwarefusion - free try it
+
+client installed - hardware->OS->virtualbox->another/multiple OS
+
+hypervisor(like OS) - EXSI (free)- connected to management software(vssphere,for FT)
+can transfer instance of OS,applicaitons on other server that has EXSI
+
+
+hosted solutions 		vs hosted instances
+everythhing is provided		our server setup on cloud
+
+private cloud - virtualisation in our premises...not on internet
+
+
+
+thin client can be software or hardware
+
+
+edge servers of hosted solutions companies
+
+
+containers can enable your company to pack a lot more applications into a single physical server than a virtual machine (VM) can. Container technologies, such as Docker, beat VMs at this part of the cloud or data-center game
+
+
+Hosting Static files in Cloud Foundry
+Normally, deploying static files requires a webserver like Apache or Nginx. But we’re not going to have to worry about that: the platform will automatically take care of any Internet-facing configuration we’ll need. You only need to push your application files to the Cloud Foundry environment and everything else will be taken care of.

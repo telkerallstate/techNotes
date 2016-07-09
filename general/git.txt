@@ -1,0 +1,399 @@
+Git’s patches are much like RTC’s change sets. Both systems have workspace areas locally and remotely, with separate actions required to move code from your workspace to a common delivery area
+
+
+
+    A Git Commit is called Delivering in RTC
+    A Git repository is now a Stream
+    A Branch is loosely a workspace. One can create many workspaces where one can
+    Git tag is essentially a baseline in RTC; however one must accept these baselines in your code otherwise you will have merge conflicts
+
+GIT		RTC
+Snapshot	Changeset
+Snapshot is being used here as a layman's synonym for a commit. A commit object is essentially metadata (author, date, message) and a snapshot of the contents of your work tree (represented as a tree object)
+
+your local repository consists of three "trees" maintained by git. the first one is your Working Directory which holds the actual files. the second one is the Index which acts as a staging area and finally the HEAD which points to the last commit you've made
+
+You can propose changes (add it to the Index) using git add filename
+
+git commit -m "Commit message" - Now the file is committed to the HEAD, but not in your remote repository yet.
+
+Your changes are now in the HEAD of your local working copy. To send those changes to your remote repository, execute
+git push origin master
+
+
+
+Branches are used to develop features isolated from each other. The master branch is the "default" branch when you create a repository.
+
+
+create a new branch named "feature_x" and switch to it using
+git checkout -b feature_x
+
+
+to update your local repository to the newest commit, execute
+git pull
+
+
+to merge another branch into your active branch (e.g. master), use
+git merge <branch>
+
+
+In a DistributedVCS
+(such as Git, Mercurial, Bazaar or Darcs), clients don’t just check out the latest snapshot of the files: they fully mirror the repository
+
+
+
+(CVS, Subversion,
+Perforce, Bazaar, and so on) think of the information they keep as a set of
+files and the changes made to each file over time.
+Git thinks of its data
+more like a set of snapshots of a miniature filesystem. Every time you commit,
+or save the state of your project in Git, it basically takes a picture of what all
+your files look like at that moment and stores a reference to that snapshot.To
+be efficient, if files have not changed, Git doesn’t store the file again, just a link
+to the previous identical file it has already stored. Git thinks about its data more
+like a stream of snapshots.
+
+
+The Git directory is where Git stores the metadata and object database for
+your project
+
+
+The working directory is a single checkout of one version of the project.
+These files are pulled out of the compressed database in the Git directory and
+placed on disk for you to use or modify.
+
+
+The staging area is a file, generally contained in your Git directory, that
+stores information about what will go into your next commit
+
+
+You do a commit, which takes the files as they are in the staging area and
+stores that snapshot permanently to your Git directory
+
+
+You can get a Git project using two main approaches. The first takes an existing
+project or directory and imports it into Git. The second clones an existing Git
+repository from another server.
+
+
+If you commit at this point, the version of the file at the time you
+ran git add is what will be in the historical snapshot.
+
+
+git add is a multipurpose command – you use it to begin tracking
+new files, to stage files, and to do other things like marking merge-conflicted
+files as resolved
+If you modify a file after you run git add, you have
+to run git add again to stage the latest version of the file
+
+
+
+The rules for the patterns you can put in the .gitignore file are as follows:
+• Blank lines or lines starting with # are ignored.
+• Standard glob patterns work.
+• You can start patterns with a forward slash (/) to avoid recursivity.
+• You can end patterns with a forward slash (/) to specify a directory.
+• You can negate a pattern by starting it with an exclamation point (!).
+
+
+git diff
+That command compares what is in your working directory with what is in
+your staging area
+git diff --staged
+This command compares your staged changes
+to your last commit:
+
+
+git commit -a -m 'added new benchmarks' skip staging.-a flag includes all changed
+files. 
+
+
+
+To remove a file from Git, you have to remove it from your tracked files (more
+accurately, remove it from your staging area) and then commit
+rm PROJECTS.md
+git rm PROJECTS.md
+
+
+
+git rm --cached README
+you may want to
+keep the file on your hard drive but not have Git track it anymore. This is particularly
+useful if you forgot to add something to your .gitignore file and accidentally
+staged it
+
+
+git mv file_from file_to
+rename file
+
+
+
+git reset HEAD CONTRIBUTING.md
+unstage file
+
+
+Unmodifying a Modified File
+git checkout -- CONTRIBUTING.md
+
+
+
+Remote repositories are versions of your project that
+are hosted on the Internet or network somewhere. You can have several of
+them, each of which generally is either read-only or read/write for you
+
+
+
+
+git remote
+To see which remote servers you have configured
+
+
+If
+you’ve cloned your repository, you should at least see origin – that is the default
+name Git gives to the server you cloned from
+
+
+
+git remote -v
+shows you the URLs that Git has stored for the
+shortname to be used when reading and writing to that remote
+
+
+
+git fetch [remote-name]
+to get data from your remote projects
+
+
+git fetch origin fetches any new
+work that has been pushed to that server since you cloned
+git fetch command only downloads
+the data to your local repository – it doesn’t automatically merge it with any of
+your work or modify what you’re currently working on. You have to merge it
+manually into your work when you’re ready
+
+use the git pull command
+to automatically fetch and then merge that remote branch into your current
+branch
+
+
+
+git push [remote-name][branch-name]
+git push origin master
+
+
+
+
+If you and someone
+else clone at the same time and they push upstream and then you push upstream,
+your push will rightly be rejected. You’ll have to fetch their work first
+and incorporate it into yours before you’ll be allowed to push
+
+
+git remote show origin
+shows which branch is automatically pushed to when you
+run git push while on certain branches
+
+
+
+by
+default, the git clone command automatically sets up your local master
+branch to track the remote master branch (or whatever the default branch is
+called) on the server you cloned from.
+
+
+branching
+In many VCS tools, this is a somewhat expensive
+process, often requiring you to create a new copy of your source code directory,
+
+
+
+Git doesn’t store data as a series of
+changesets or differences, but instead as a series of snapshots
+
+
+
+When you make a commit, Git stores a commit object that contains a pointer
+to the snapshot of the content you staged. This object also contains the author’s
+name and email, the message that you typed, and pointers to the commit
+
+
+Staging the files checksums each one
+(the SHA-1 hash we mentioned in Chapter 1), stores that version of the file in the Git repository (Git refers to them as blobs), and adds that checksum to the
+staging area:
+
+
+Your Git repository now contains five objects: one blob for the contents of
+each of your three files, one tree that lists the contents of the directory and
+specifies which file names are stored as which blobs, and one commit with the
+pointer to that root tree and all the commit metadata.
+
+
+FIGURE 3-2
+Commits and their
+parents
+
+
+
+A branch in Git is simply a lightweight movable pointer to one of these commits.
+
+
+
+How does Git know what branch you’re currently on? It keeps a special
+pointer called HEAD.
+The git branch command only created a new branch – it didn’t switch to that
+branch.
+
+
+FIGURE 3-5
+
+
+git checkout testing
+To switch to an existing branch
+This moves HEAD to point to the testing branch
+
+
+
+SWITCHING BRANCHES CHANGES FILES IN YOUR WORKING
+DIRECTORY
+If you switch to an older branch, your
+working directory will be reverted to look like it did the last time you
+committed on that branch. If Git cannot do it cleanly, it will not let you
+switch at all.
+
+
+
+
+Because a branch in Git is in actuality a simple file that contains the 40 character
+SHA-1 checksum of the commit it points to, branches are cheap to create
+and destroy. Creating a new branch is as quick and simple as writing 41 bytes to
+a file (40 characters and a newline).
+This is in sharp contrast to the way most older VCS tools branch, which involves
+copying all of the project’s files into a second directory.
+
+
+git checkout master
+git merge hotfix
+--now master and hotfix are pointing to latest version
+
+
+git branch -d hotfix
+deleting hotfix branch
+
+
+Because the
+commit on the branch you’re on isn’t a direct ancestor of the branch you’re
+merging in, Git has to do some work. In this case, Git does a simple three-way merge **
+This is referred to as a merge commit, and is special in
+that it has more than one parent
+
+
+
+It’s worth pointing out that Git determines the best common ancestor to use
+for its merge base; this is different than older tools like CVS or Subversion (before
+version 1.5), where the developer doing the merge had to figure out the
+best merge base for themselves
+
+
+
+After you’ve resolved each of
+these sections in each conflicted file, run git add on each file to mark it as resolved.
+Staging the file marks it as resolved in Git
+
+
+
+graphical tool 
+git mergetool
+
+
+While “master” is the default name for a
+starting branch when you run git init which is the only reason it’s
+widely used, “origin” is the default name for a remote when you run git
+clone.
+
+
+
+
+Remote-tracking branches
+act as bookmarks to remind you where the branches in your remote repositories
+were the last time you connected to them.
+
+
+FIGURE 3-22
+Server and local
+repositories after
+cloning
+
+
+FIGURE 3-23
+Local and remote
+work can diverge
+
+
+FIGURE 3-24
+git fetch updates
+your remote
+references
+
+
+when we pull an repo, we will have 2 pointers in local...origin/master and master
+
+
+git push <remote> <branch>
+git push origin serverfix
+
+
+
+Tracking branches are local branches that have a direct relationship
+to a remote branch
+If you’re on a tracking branch and type git
+pull, Git automatically knows which server to fetch from and branch to merge
+into
+
+
+
+While the git fetch command will fetch down all the changes on the server
+that you don’t have yet, it will not modify your working directory at all. It will
+simply get the data for you and let you merge it yourself. However, there is a
+command called git pull which is essentially a git fetch immediately followed
+by a git merge in most cases
+
+
+git push origin --delete serverfix
+
+
+
+In Git, there are two main ways to integrate changes from one branch into another:
+the merge and the rebase
+
+
+There is no difference in the end product
+of the integration, but rebasing makes for a cleaner history
+
+
+
+Although you can technically push changes to
+and pull changes from individuals’ repositories, doing so is discouraged because
+you can fairly easily confuse what they’re working on if you’re not careful.
+
+
+
+A remote repository is generally a bare repository – a Git repository that has
+no working directory.
+In the simplest terms, a bare repository is the contents of your
+project’s .git directory and nothing else
+
+
+In fact, for services like GitHub, the URL you use to view the repository online
+(for example, “https://github.com/schacon/simplegit”) is the same URL you
+can use to clone and, if you have access, push over
+
+
+If you want to contribute to an existing project to which you don’t have push
+access, you can “fork” the project. What this means is that GitHub will make a
+copy of the project that is entirely yours; it lives in your user’s namespace, and
+you can push to it
+
+
+The GitHub Flow
+GitHub is designed around a particular collaboration workflow, centered on
+Pull Requests
