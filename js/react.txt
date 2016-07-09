@@ -1,0 +1,191 @@
+React  gives  you
+A lightweight virtual DOM
+Powerful views without templates
+Unidirectional data flow
+Explicit mutation
+
+
+Component  Life  Cycle
+
+Initial  render
+
+Get  Initial  State
+Get  Default  Props
+Component  Will  Mount
+Render
+Component  Did  Mount
+
+
+PROPS  
+Change
+Component  will  receive  props
+Should  component  update
+Component  will  update
+Render
+Component  did  
+update
+
+
+STATE  
+Change
+Should  component  update
+Component  will  update
+Render
+Component  did  
+update
+
+
+The statics object allows you to define static methods
+that can be invoked on the component without creating instances
+var Componenet = React.createClass({
+statics:{
+componentName : 'something'	//cant access props or state
+},
+render:function(){
+
+}})
+
+
+console.log(Component.componentName)
+
+
+virtual DOM
+
+
+
+State - 
+For  interactivity    
+in  the  component.    
+Mutable  data
+
+
+Props
+For  data  passed    
+to  the  component  
+Should  be  treated  as    
+immutable.
+
+
+Every  call  to  setState()  triggers  a  re-­-render .
+(except  when  called  within  
+componentDidMount)
+
+
+React - Only  the  changes    
+are  rendered
+jQuery - Everything  is    
+re-­-rendered
+
+
+React does not have a native router
+There are however a few to choose
+between
+React-router
+React-router-component
+Monorouter
+
+
+Inline CSS
+
+render(){
+var inlinescss= {
+padding:'10px'
+};
+return
+<div className="XYZ"><h1 style={inlinecss}>ABC</h1></div>
+}
+
+
+
+The webpack-dev-server is a little node.js Express server, which uses the webpack-dev-middleware to serve a webpack bundle
+Webpack Dev Server, which is the smartest, simplest way to build React applications
+
+
+you can only use expressions inside JSX braces, not  if/else statements
+but ternary expression are allowed
+
+ there are three primary ways of calling methods in React/ES6
+
+onClick={this.buttonClicked}
+
+a special method called bind() that lets you force JavaScript to use a definition of this you specify
+
+onClick={this.buttonClicked.bind(this)}
+
+
+constructor() method is automatically called when an object is created
+
+super()
+
+
+constructor(props){
+super(props);
+this.state = {
+name: **
+}
+}
+
+<p>Hello, {this.state.name}.</p>
+
+any change of a component's state or props will automatically cause it to re-render so that the new values are reflected in your interface
+React merges state so that old state and new state co-exist as a combined value. This means if your initial state has the name Bob and the country Australia, and you change the name to be Lucy, the country will remain set to Australia too
+
+
+buttonClicked() {
+    const newState = {
+        name: chance.first()
+    };
+
+    this.setState(newState);
+}
+
+
+forceUpdate() ??
+
+
+Facebook  has over 10,000 React components!
+
+Single Source of Truth
+one master state for most if not all of your application, then send that state down as props to your child components.
+
+Using this technique, when any part of that master state changes it will automatically update the props of your child components, and the changes will flow down in one direction from top to bottom – always synchronized, never duplicated
+
+
+const people = [];
+
+    for (let i = 0; i < 10; i++) {
+        people.push({
+            name: chance.first(),
+            country: chance.country({ full: true })
+        });
+    }
+
+    this.state = { people };
+
+
+
+return (<div>
+    {this.state.people.map((person, index) => (
+        <p>Hello, {person.name} from {person.country}!</p>
+    ))}
+    </div>);
+
+
+
+use key to remove errors ??
+{this.state.people.map((person, index) => (
+        <p key={index}>Hello, {person.name} from {person.country}!</p>
+    ))}
+
+
+
+componentWillMount()
+this method gets called on a component just before it's rendered for the very first time
+
+
+export default Detail;
+thisis ES6
+
+
+
+Server-side rendering allows you to pre-render the initial state of your React components server-side

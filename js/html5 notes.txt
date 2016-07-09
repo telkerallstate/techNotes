@@ -1,0 +1,177 @@
+local storage tructire
+
+html _ xtml + dom =  tml 5
+
+<!doctype html> indicates html5
+
+"page1.html"
+
+<meta charset="utf-8"> - doesnt require closing tag
+
+validator.w3.org
+
+databse is jst collection of files
+
+non database files contain logs
+
+orcle instance is a program
+
+group dtafiles into tablespace
+
+
+
+
+Tomcat ( Servlet engine) or an application server like Glassfish
+
+There's a big difference between these two things, since JEE was written to establish a normalized application stack that manage the redundant technical part ( object pooling to improve performances, manage transaction and distributed transaction, standardized synchronous and asynchronous communication, allow the ability to move components easily to a different server to ensure scalability, persistence mapping, and so on... )
+
+ we should be aware that application servers are based on a Java EE specification, while Spring is not a specification but a set of well written APIs.
+
+
+Prototype is an excellent framework to use either as your main JavaScript library or as the
+foundation of another library
+
+
+Setting the position style rule to absolute means that the element ’ s top and left
+coordinates are calculated from the top - left corner of the document. Setting the position to relative
+allows you to position the element using numbers calculated to the containing block ’ s top - left corner
+
+
+One of the hardest things about working with the DOM in different browsers is getting the dimensions
+of the elements contained in the DOM. Each browser has quirks relating to how it sizes elements in the
+DOM and how its size affects the flow of the surrounding elements
+
+
+Every class object that is created contains two special properties that tell you where the class is in your
+object hierarchy. The superclass property tells you what class your class inherits from, and the
+subclasses array contains all of the objects that inherit from your class.
+
+
+
+window.name = “Global window object”;
+function showName() {
+return this.name
+};
+alert(showName()); //shows “Global window object”
+var namespace = {
+name : “namespace object”,
+showName: function() { return this.name;}
+};
+alert(namespace.showName());//shows “namespace object”
+window.namespaceShowName = namespace.showName;
+alert(window.namespaceShowName());//shows “Global window object”
+
+
+
+
+The advantage of using the hosted version of the library is performance. These files are served via low
+latency servers and are cached globally
+
+One of the more conspicuous omissions in the W3C DOM spec is a method for getting elements by class
+name. With getElementById , getElementsByTagName and even getElementsByName , one would
+think it logical to also include a getElementsByClassName , but alas, it isn ’ t there
+
+
+
+Most of the time, however,
+the JavaScript that ’ s to be executed doesn ’ t need the images to be there; all it needs is for the DOM to be
+ready, that is, for certain elements to be ready. Unfortunately, there is no native W3C DOM method that
+fires when the DOM is ready.
+
+
+Though JavaScript is an extremely malleable and extensible language, it doesn ’ t allow for the creation of
+custom events.It is, however, possible to put functions into an array and then iterate over that array and fire those
+events in sequence. And that ’ s essentially what YUI Custom Events are
+
+
+Normally, a web site composed entirely inside one Flash
+object never changes pages. So even though pages inside the Flash object change, the URL of the site
+remains the same. The same goes with sites that use AJAX heavily. After a user ’ s been on an AJAXdriven
+site for a while, the page they ’ re on might look nothing like it did when it was first loaded. In
+both cases, bookmarking the page will bring the user back to a page that starts from scratch, not where
+they were when they created the bookmark.
+The YUI Browser History Manager provides a method by which both of these issues can be fixed
+
+
+Here is a bit of simple JSON:
+{“greeting”: “Hello World!”}
+Once this string is passed through JavaScript ’ s eval , it will be transformed into an actual object. So
+here ’ s a simple example of how that ’ s done:
+var personString = “{‘fname’: ‘John’, ‘lname’: ‘Doe’}”;
+var person = eval(“(“ + personString + “)”);
+alert(“Hello, my name is “ + person.fname + “ “ + person.lname);
+
+The interpreter then takes that string and parses and executes it, just as
+if it were code it had read from a trusted HTML or JavaScript file. There is no security model in place
+whatsoever. So should there be any malicious code serialized in that string, it would get executed as
+well.
+
+
+One technique to increase performance or the
+perception of performance is the idea of lazy loading.
+Another technique
+for improving performance is to reduce the number of HTTP requests that a page makes.
+
+
+About a year later, Slocum officially branched off of the YUI Library and was offering a control library
+known as Ext JS 1.0. Rather than anchor his library to the YUI foundation, Slocum decided to create an
+“ adapter ” abstraction layer, offering developers a choice between several modern and mature JavaScript
+libraries. Ext JS now had a large control library available to developers using jQuery, Prototype, and of
+course YUI. Using the simple technique of namespacing, developers could rest assured the Ext JS control
+library would not conflict with their core JavaScript library of choice
+
+
+Most JavaScript code existing on
+the Internet today ignores the full potential and flexibility of object - oriented design
+The Ext JS
+library uses all of these object - oriented concepts extensively and benefits from each.
+
+
+As you ’ ll see in this chapter, Ext JS is extensible. If you don ’ t like the way that Ext JS performs a
+particular task, override it, augment it, or just flat out replace it.
+Ext JS plays well with others. If you ’ re already using another framework, Ext JS is designed to
+work alongside other well - playing frameworks. In fact, Ext JS’s core libraries can be swapped out
+with other popular frameworks
+
+
+
+JavaScript parameters do not have data types and there is no compiler
+For example, version 1
+of methodA is expecting the first parameter to be a String . Three months later, version 2 of methodA is
+released, and the first parameter is now a Date . Without a compiler, developers are forced to sift through
+all of their code, trying to find and correct something that simply shouldn ’ t be a problem. And while we
+all know that the author of classA has caused all this unnecessary pain, there ’ s simply nothing we can
+do about it now.
+This is a very common, real - world JavaScript development problem
+
+
+
+The Ext.Element is a cross - browser abstraction class offering all the common functionality that is
+offered by the native HTMLElement class
+
+In reality, the Ext.Element object has virtually no properties of its own (it is merely a cross - browser
+wrapper for the native HTMLElement
+
+
+every JavaScript framework on the planet has added some helper functions for performing
+these fancy AJAX jobs, and Ext JS is no exception. However, the Ext JS authors realize that AJAX
+techniques do not solve all the data access problems. Getting the data is only part of the problem.
+Issues such as data format, data schema, and data deserialization have all been addressed by Ext
+
+
+the classes that
+retrieve data (proxies); the classes that deserialize and model data (readers); and the classes that
+cache the remodeled data (stores).
+
+
+Where Dojo really shines, though, is with its facilities for building user interfaces and whole applications
+using declarative HTML markup. Rather than piecing together applications with long stretches of object
+initialization code and wiring up DOM elements, Dojo offers the ability to scan the page itself for setup
+cues in Dojo - specific attributes and conventions. Though you still can choose to build things without this
+declarative style, it can help speed development
+
+Unlike jQuery, which implements a domain - specific language of its own, MooTools stays firmly rooted
+in standard JavaScript and augments it. As opposed to the near Java - esque system of isolated modules
+and on - demand dependencies offered by YUI and imposed by Dojo, MooTools is loaded with HTML
+script tags and relies on JavaScript ’ s built - in facilities for namespaces and modularity through object
+literals and closures.

@@ -1,0 +1,54 @@
+One of the most important characteristics of SOAP is that it uses XML rather than HTTP to define the content of the message.
+
+ SOAP has built-in stateful operations. REST is naturally stateless
+
+
+
+Simplicity is one of the strongest reasons that major companies like Amazon and Google are moving their APIs from SOAP to REST.......work on soap to rest migrations
+
+
+rest.
+The main reason for doing this is that you automatically have a stateless service which can be load balanced, failed over etc. etc
+
+
+tcp and udp live on layer4
+ftp smtp http pop dns protocols live on layer7
+
+
+Differences Between Layer 4 and Layer 7 Load Balancing
+layer4 loadbalancers
+simply forward network packets to and from the upstream server without inspecting the content of the packets
+layer7 load balancers
+It can make a load-balancing decision based on the content of the message (the URL or cookie, for example). It then makes a new TCP connection to the selected upstream server (or reuses an existing one, by means of HTTP keepalives) and writes the request to the server.
+
+
+The URLs are also easy to understand and remember. For example, a bookstore might define the URL http://www.bookstore.com/books/ for a list of books it sells and the URL http://www.bookstore.com/books/0321396855/ for details about a specific book with the ISBN 0321396855. This is in contrast to action-centric applications, which typically have long, cryptic URLs describing actions to perform, such as http://www.bookstore.com/action/query?t=b&id=11117645532&qp=0321396855
+
+
+Dr. Roy Fielding coined the term REST in his Ph.D. dissertation, where he referred to "hypermedia as the engine of application state." This means that a resource is expected to contain hyperlinks
+ While hyperlinks are commonplace in (X)HTML applications meant to be used by humans, they have not typically been used in XML, which is meant to be consumed by machines. Like (X)HTML, REST Web services make use of hyperlinks in XML
+
+
+
+The binding element defines how a client can communicate with the Web service. In the case of REST Web services, a binding specifies that clients can communicate using HTTP
+
+
+
+*******
+
+Design-by-buzzword is a common occurrence
+
+two research disciplines in
+computer science: software and networking
+
+
+application gateway is an application program that runs on a firewall system between two networks. When a client program establishes a connection to a destination service, it connects to an application gateway, or proxy. The client then negotiates with the proxy server in order to communicate with the destination service
+
+An advantage of a proxy server is that its cache can serve all users
+If the page is not in the cache, the proxy server, acting as a client on behalf of the user, uses one of its own IP addresses to request the page from the server out on the Internet.
+
+
+request from private IP address is converted to public IP address by proxy server
+
+
+

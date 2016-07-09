@@ -1,0 +1,259 @@
+Node.js = Runtime Environment + JavaScript Library
+
+node [options] [v8 options] [script.js | -e "script"] [arguments]
+
+
+All APIs of Node.js library are asynchronous
+Node.js applications never buffer any data. These applications simply output the data in chunks
+
+A Node.js application consists of the following three important components:
+Import required modules
+Create server
+Read request and return response
+
+application consists of the following
+$ node main.js
+
+
+Node Package Manager (NPM) provides two main functionalities:
+? Online repositories for node.js packages/modules which are searchable on search.nodejs.org
+? Command line utility to install Node.js packages, do version management and dependency management of Node.js packages.
+
+
+you can use npm ls command to list down all the locally installed modules.
+
+
+installing the express module using global installation.
+$ npm install express -g
+
+
+
+package.json is present in the root directory of any Node application/module and is used to define the properties of a package
+All the APIs of Node are written in such a way that they support callbacks.
+
+
+
+Node.js is a single-threaded application, but it can support concurrency via the concept of event and callbacks.
+
+
+
+Although events look quite similar to callbacks, the difference lies in the fact that callback functions are called when an asynchronous function returns its result, whereas event handling works on the observer pattern
+The functions that listen to events act as Observers. Whenever an event gets fired, its listener function starts executing
+
+
+
+any async function accepts a callback as the last parameter and a callback function accepts an error as the first parameter
+
+
+Every method in the fs module has synchronous as well as asynchronous forms.
+It is better to use an asynchronous method instead of a synchronous method
+
+
+
+Node.js global objects are global in nature and they are available in all modules. We do not need to include these objects in our application, rather we can use them directly.
+
+
+
+npm install express --save
+The above command saves the installation locally in the node_modules directory and creates a directory express inside node_modules
+
+
+
+Express application uses a callback function whose parameters are request and response objects.
+app.get('/', function (req, res) {
+// --
+})
+
+
+Node Js is the new kid in the block ( .. not so new.. but still..). It is not essentially built for developing Web applications. http based Web application can be considered as one use of Node Js.
+
+
+Apache is thread based, so if an unexpected problem occurs while processing a request, only that particular thread will crash leaving rest of the requests and threads intact. Node Js handles multiple requests using one single thread. If a problem occurs whole node js instance will crash along with any global data that was stored in javascript variables or arrays. It can be automatically restarted using "forever" or some other modules but the current requests and the data is gone.
+
+when Apache gets a request which is CPU intensive, other request do not get blocked because of the context switching between the threads. when NodeJs gets a CPU intensive request, all the other requests get blocked till this CPU intensive request stops for an I/O.
+
+NodeJs is a perfect candidate for real time communication over internet. Combine it with Socket.IO and you will get a good scalable web socket server  along with fallback communication mediums such as flash socket and long polling
+
+ Apache is usually used with php and mysql, and Node is used with Express and mongoDB. 
+
+
+PHP is an older language, running behind the Apache web server in a request/response fashion. Node.js is a non-blocking event-loop framework running JavaScript within the V8 engine, with an optional web server built in
+
+Having a server built in, the stack is a lot simpler, there are less points of failure, and there is more control over what you can do with HTTP responses
+
+
+Node.js runs on the V8 JavaScript virtual machine.That is a very fast virtual machine for JavaScript.The downside of V8 is that it is dealing with JavaScript, a language which can provide far fewer hints to the virtual machine.
+
+
+
+V8 is Google's open source high-performance JavaScript engine, written in C++ and used in Google Chrome
+
+
+The basic job of a JavaScript engine, when all is said and done, is to take the JavaScript code that a developer writes and convert it to fast, optimized code that can be interpreted by a browser or even embedded into an application
+
+
+The two main engines of interest to us, because they are leveraged by NativeScript, are WebKit’s JavaScriptCore and Google’s V8 engine
+
+
+Browser, Headless Browser, or Runtime 	JavaScript Engine
+Mozilla 	Spidermonkey
+Chrome 		V8
+Safari** 	JavaScriptCore*
+IE and Edge 	Chakra
+PhantomJS 	JavaScriptCore
+HTMLUnit 	Rhino
+TrifleJS 	V8
+Node.js*** 	V8
+Io.js*** 	V8
+
+
+The performance comes from a combination of Google’s V8 engine, the other is the fact that Node is asynchronous and event driven, 
+
+
+"But wait, how does that make it more efficient than multi threaded applications? Wouldnt a single thread be a bottle neck?
+
+If this were a traditional server implementation that would be true, but Node is a bit different. Instead of needing to manually identify events and spawn new threads based on those events, you simply register events that will act as callbacks when fired
+
+
+Since we’re not manually creating new threads for each new event, and each event is asynchronous, none of the events will block the NodeJS event loop
+
+
+You can also create your own libraries, both in C++ and plain javascript, to include in your Node applications. Now that we have the “net” library included, we can proceed with creating 
+
+
+For core Node.js modules, just use the name without any path, e.g., require(‘name’). Same goes for modules in node_modules folder
+For all other files, use . with or without a file extension, e.g.,
+var keys = require('./keys.js')
+
+
+As you know from JS FUNdamentals, browser JavaScript by default puts everything into its global scope
+Node.js was designed to behave differently with everything being local by default. In case we need to access globals, there is a global object. 
+
+
+
+Buffer is a Node.js addition to four primitives (boolean, string, number and RegExp) and all-encompassing objects (array and functions are also objects) in front-end JavaScript. We can think of buffers as extremely efficient data stores. In fact, Node.js will try to use buffers any time it can, e.g., reading from file system, receiving packets over the network.
+
+
+
+Handy Utilities in Node.js
+
+    URL
+    Crypto
+    Path
+    String Decoder
+
+
+Streaming data is a term that mean an application processes the data while it’s still receiving it. This is useful for extra large datasets, like video or database migrations
+By default, Node.js uses buffers for streams.
+
+
+
+The best thing about NPM is that it keeps all the dependencies local, so if module A uses module B v1.3 and module C uses module B v2.0 (with breaking changes comparing to v1.3), both A and C will have their own localized copies of different versions of B. This proves to be a more superior strategy unlike Ruby and other platforms that use global installations by default
+
+
+Debugging Node.js Programs ****
+
+
+
+callback code can be re-write with the use of event emitters, promises or by utilizing the async library ***
+
+
+
+Installing locally makes nodemodules available to the current project (where it stores all of the node modules in node_modules). This is usually only good for using a module like so var module = require('module'); It will not be available as a command that the shell can resolve until you install it globally npm install -g module where npm will install it in a place where your path variable will resolve this command
+
+
+
+app.get('/', routes.index);
+--http://localhost:3000/
+
+
+
+To create a package.json run
+npm init
+
+
+A callback function is a function that is called through a function pointer
+function perform(a,b,callback){
+var
+c = a*b + a;
+callback(c);
+}
+
+perform(10,5,function(result){
+console.log(result);
+})
+
+
+
+difference between a client-side templating solution like JQuery templates and a server-side solution like Jade for Node.js?
+
+The biggest thing that should be considered about client-side vs server-side templating is that client-side templating will not work if JavaScript is disabled on the client for whatever reasons.
+A typical reason to use client-side templates is if you have an application which loads more data from the server using ajax, websockets or such. In such a case you might want to have a client-side template for rendering the newly loaded data.
+
+
+Can Node.js is capable of consuming Web services ? If yes then is it possible to do the same with jQuery? If not then what is the reason for it?
+Both are capable of consuming web service. The difference is jQuery will be doing it in client side while Node.js will be doing it in server side
+
+
+The traditional approach of sprinkling JavaScript on top of server-rendered HTML was fine for a long time, but the more AJAX and other ad hoc dynamic behavior you have, the more it turns into a giant ball of mud
+
+
+one of the biggest advantages of client-side rendering is also its biggest weakness. The performance of JavaScript apps is amazing–once all of that JavaScript has finished loading. Until then, you usually just see a loading spinner.
+
+
+server-rendered apps, the performance of your server is much more predictable, and more easily upgraded, than the many, many different device configurations of your users. Server-rendering is important to ensure that users who are not on the latest-and-greatest can see your content immediately when they click a link.
+
+
+
+
+When a request comes in, we already have the app warmed up in memory.
+
+
+
+Consider the main concepts from history:
+
+    a common language to use on both client and server: JavaScript
+    usage of a simple markup language: still HTML
+    writing directives directly in HTML: any of dozens of template engines like Handlebars
+    execution of scripts on server machine: Node, Express and a horde of other modules
+
+Coincidentally, JavaScript fits all of the above.
+
+
+
+
+When you precompile your templates, which is common advice, there should not be any significant difference between this approach and, for example, JSP
+
+
+
+
+Browserify lets you require('modules') in the browser by bundling up all of your dependencies
+
+Webpack is a module bundler. Webpack takes modules with dependencies and generates static assets representing those modules
+
+he important thing to note is that whilst the implementations are different they are essentially doing the same task of compiling the same code with CommonJS modules into standard browser-friendly JavaScript. Each module is put inside a function within bundle.js and assigned an ID so that it can be loaded as required
+
+
+Webpack also comes with great tools for development out of the box, things like hot module replacement 
+
+***Webpack compiles .js files with CommonJS modules down into a single bundle
+
+The CommonJS group defined a module format to solve JavaScript scope issues by making sure each module is executed in its own namespace.
+
+This is achieved by forcing modules to explicitly export those variables it wants to expose to the “universe”, and also by defining those other modules required to properly work.
+
+To achieve this CommonJS gives you two tools:
+
+    the require() function, which allows to import a given module into the current scope.
+    the module object, which allows you to export something from the current scope.
+
+
+
+
+
+Node.js is a wrapper around the V8 JavaScript engine so that you can build apps on the server side using JavaScript. 
+
+Google Chrome uses V8 as its JavaScript engine so that you can build apps on the client (browser) side using JavaScript
+
+
+whether or not you should use ES6 now or if you should wait, you need to look at where you’ll be using it. Will it be on the server with a framework like Node.js? If that’s the case then you can focus on what the V8 JavaScript engine supports

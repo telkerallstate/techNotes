@@ -1,0 +1,156 @@
+conceptual aside
+syntax parsers
+execution contexts
+lexical environments
+
+object is a collection of name-value pairs--- which is diff than obj def in other lang
+
+nodejs takes event-model littler further- it presents the event loop as a longuage construct instead of library ****
+
+
+base excution conext - global execution ctx - cretes following
+global object
+this
+
+global object = this
+
+global = that isnt inside function
+
+
+execution ctx = global obj,this,outer env, code
+
+
+hoisting- setup memory space for vars,functions  - vars and functions are available even though it is declred later.
+exceution ctx is created in 2 phases - hoising happens in 1st phase
+
+
+undefined in special value in js
+
+var a = undefined is valid
+
+js is single threadied  = one command at a time abd synchronous
+
+
+each execution ctx on the stack has this created
+
+
+function b(){
+console.log(myvar)}
+function a(){
+var myvar=2;
+b()}
+var myvar = 1;
+a();
+
+prints 1 bcos function b is lexically/physically sitting along with var myvar ,on global ctx.
+if the var is not found in immediate lexical ctx, it searches in parent lexical ctx
+
+
+understanding the tech working under the hood is very imp to solve problems in prod
+
+es6- ecmascriipt 6 - new way of declarring
+let a=10
+declaredinside the block
+
+
+asunc
+clickhandker has its own execution ctx
+js wont look at event queue(formed by async ) untill its sync process stack is empty
+
+
+
+js engine workes with renderengine and httpengine of the browser in async way but jsengine code is synchronous
+
+
+Not to mention that the development process isn't productive: code -> compile -> deploy while it is in frameworks like (Rails/Django/Grails): run testing server -> code -> change things and see what h 	appens
+
+
+
+One of the most annoying parts of Java was the fact that most of the libraries that you use were not included in java itself, you had to include a ton of 3rd party libs from places like apache commons
+
+js discovers the type of variable at runtime
+
+6 types of primitives
+undefined
+null - prefered for setting
+boolean
+number - it is floating type - always has decimals
+string
+symbol - used in es6
+
+
+operators are functions
+var a = 3+4
+means below
+function +(a,b){
+return sum}
+
+
+
+var a = 1+'2'
+12 - ceorcion
+var a= false<1
+true
+Number(null)
+0
+Number(undefined)
+NaN
+=== strict equalitty- doesnt ceorce
+
+funciton func1(name){
+console.log("hello"+name)}
+func1();
+hello undefined -- undefuned ceorced to string
+
+
+
+avoiding var colliding in libraries
+window.libraryName = window.libraryName || 'lib2'
+
+
+
+var person = new Object();		//not prefered
+person["firstname"] = "name123"
+
+console.log(person["firstname"])
+console.log(person.firstname)
+
+person.address = new Object()
+person.address.street = "dsaf"		preffered
+person[address][street]
+
+
+
+
+You should really always consider using forEach instead of a for loop . Because forEach uses callbacks, it prevents scope problems with asynchronous operations in a loop
+
+
+Getting the index of the current element is trivial: it's the second argument for map, filter and forEach, and the third argument for reduce.
+If you need a reference to the original array for some reason, that is the argument after that - 
+
+
+The keyword require returns an object, which references the value of module.exports for a given file.
+
+
+
+There’s a few things we can agree on:
+
+    ES2015 modules are the one true future module format for JavaScript.
+    Babel is the ES2015 compiler of choice today.
+    Native loaders are still a while away from being available in browsers
+
+
+
+Transpilers, or source-to-source compilers, are tools that read source code written in one programming language, and produce the equivalent code in another language
+They read CoffeeScript, TypeScript, and ES2015, and spit out JavaScript guaranteed to work anywhere
+
+
+
+every browser uses a different JavaScript engine: Chrome runs V8, Firefox runs SpiderMonkey, and Interet Explorer, Chakra
+
+
+we write our source in ES2015, and let a transpiler translate it to vanilla ES5 that works in every browser.
+
+
+
+
