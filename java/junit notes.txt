@@ -1,0 +1,11 @@
+Separate test class instances and class loaders for each unit test to avoid
+side effects
+JUnit annotations to provide resource initialization and reclamation methods:
+@Before, @BeforeClass, @After, and @AfterClass
+A variety of assert methods to make it easy to check the results of your tests
+Integration with popular tools like Ant and Maven, and popular IDEs like
+Eclipse, NetBeans, IntelliJ, and JBuilder
+
+
+
+we mark the method as a unit test method by adding the @Test annotation

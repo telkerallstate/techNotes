@@ -1,0 +1,68 @@
+public interface List<E> {
+void add(E x);
+Iterator<E> iterator();
+}
+public interface Iterator<E> {
+E next();
+boolean hasNext();
+}
+
+
+
+List<String> ls = new ArrayList<String>(); //1
+List<Object> lo = ls; //2  --- compilation error
+if Foo is a subtype (subclass or subinterface) of Bar, and G is some
+generic type declaration, it is not the case that G<Foo> is a subtype of G<Bar>.
+
+
+
+
+void printCollection(Collection<Object> c) {
+for (Object e : c) {
+System.out.println(e);
+}}
+The problem is that this new version is much less useful than the old one. Whereas
+the old code could be called with any kind of collection as a parameter, the new code
+only takes Collection<Object>, which, as we’ve just demonstrated, is not a supertype
+of all kinds of collections!
+
+
+So what is the supertype of all kinds of collections? It’s written Collection<?>
+
+
+
+
+Collection<?> c = new ArrayList<String>();
+c.add(new Object()); // compile time error
+
+
+
+public void drawAll(List<Shape> shapes) {
+for (Shape s: shapes) {
+s.draw(this);
+}
+}
+Now, the type rules say that drawAll() can only be called on lists of exactly Shape:
+it cannot, for instance, be called on a List<Circle>
+
+
+use
+public void drawAll(List<? extends Shape> shapes) { ... }
+
+
+
+
+
+static void fromArrayToCollection(Object[] a, Collection<?> c) {
+for (Object o : a) {
+c.add(o); // compile time error
+}}
+
+static <T> void fromArrayToCollection(T[] a, Collection<T> c) {
+for (T o : a) {
+c.add(o); // correct
+}}
+
+
+
+All the wrapper classes (Integer, Long, Byte, Double, Float, Short) are subclasses of the abstract class Number

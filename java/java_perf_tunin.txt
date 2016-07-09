@@ -1,0 +1,537 @@
+Change your code only when a bottleneck has been identified, and
+never change the design of your application for minor performance gains
+
+Three resource s limit all applications:
+• CPU speed and availability
+• System memory
+• Disk (and network) input/output (I/O)
+When tuning an application, the first step is to determine which of these is causing your application
+to run too slowly
+
+
+
+Here's a strategy I have found works well when attacking performance problems:
+1. Identify the main bottlenecks (look for about the top five bottlenecks, but go higher or lower
+if you prefer).
+2. Choose the quickest and easiest one to fix, and address it (except for distributed applications
+where the top bottleneck is usually the one to attack: see the following paragraph).
+3. Repeat from Step 1.
+
+In Java, the key to making an application responsive is multithreading
+
+Caching is an
+important performance-tuning technique that trades space for time,
+
+
+Agree on target values and acceptable variances with the customer or potential users of the
+application (or whoever is responsible for performance) before starting to tune. Otherwise, you will
+not know where to target your effort, how far you need to go
+
+If a change does not improve performance,
+you should revert back to the previous version
+
+
+System.currentTimeMillis( )
+
+
+
+The best way to avoid the Double.equals( ) method is to replace the hash table with another
+implementation that stores double primitive data types directly rather than requiring the doubles to
+be wrapped in a Double object. This allows the == operator to make the comparison in the put( )
+method, thus completely avoiding the Double.equals( ) call: this is another standard tuning
+tactic, where a data structure is replaced with a more appropriate and faster one for the task
+
+My
+recommendation is to use a better (probably commercial) tool than the JDK profiler.
+
+The JDK provides two methods for monitoring the amount of memory used by the runtime system.
+The methods are freeMemory( ) and totalMemory( ) in the java.lang.Runtime class.
+
+If the amount of data being transferred is more than
+about a third of the network's capacity, the amount of data is the factor limiting performance.
+Between these two endpoints, either the amount of data or the number of transfers can limit
+performance, although in general, the number of transfers is more likely to be the problem.
+
+For optimal performance, I recommend developing with your own versions of classes rather than
+the JDK versions whenever possible. This gives maximum tuning flexibility. However, this
+recommendation is clearly impractical in most cases
+
+
+Many JDK classes provide generic capabilities (as you would expect from library classes), and so
+they are frequently more generic than what is required for your particular application. These generic
+capabilities often come at the expense of performance. For example, Vector is fine for generic
+Objects, but if you are using a Vector for only one type of object, then a custom version with an
+array and accessors of that type is faster, as you can avoid all the casts required to convert the
+generic Object back into your own type. Using Vector for basic data types (e.g., longs) is even
+worse, requiring the data type to be wrapped by an object to get it into the Vector. For example,
+building and using a LongVector class improves performance and readability by avoiding casts,
+Long wrappers, unwrapping, etc.:
+public class LongVector
+{
+long[] internalArray;
+int arraySize
+public void addElement(long l) {
+...
+public long elementAt(int i) {
+...
+}
+public class QueryVector extends MyVector
+{
+public Object[] getTheBitsIWant{
+//Access the internal array directly rather than going through
+//the method accessors. This makes the search much faster
+Object[] results = new Object[10];
+for(int i = arraySize-1; i >= 0; i--)
+if (internalArray[i] ....
+}
+
+
+
+Cut dead code and unnecessary instructions, including checks for null
+
+Remove unused fields
+
+
+
+Java handles low-level memory
+allocation and deallocation and comes with a garbage collector. Further, it prevents access to these
+low-level memory-handling routines, making the memory safe.
+However, Java does not prevent you from using excessive amounts of memory nor from cycling
+through too much memory (e.g., creating and dereferencing many objects).Contrary to popular
+opinion, you can get memory leaks by holding on to objects without releasing references
+
+
+Vector grows by creating a new larger internal
+array object, copying all the elements from and discarding the old array
+
+
+
+//Use a factory method instead of 'new Vector( )'
+Vector v = vectorPoolManager.getVector( );
+... //do vector manipulation stuff
+//and the extra work is that we have to explicitly tell the
+//pool manager that we have finished with the vector
+vectorPoolManager.returnVector(v);
+
+these Vector s should be used only
+internally within an application, not externally in third-party classes where a handle may be
+retained
+
+
+public class VectorPoolManager
+{
+Vector[] pool;
+boolean[] inUse;
+public VectorPoolManager(int initialPoolSize)
+{
+pool = new Vector[initialPoolSize];
+inUse = new boolean[initialPoolSize];
+for (int i = pool.length-1; i>=0; i--)
+{
+pool[i] = new Vector( );
+inUse[i] = false;
+}
+}
+public synchronized Vector getVector( )
+{
+for (int i = inUse.length-1; i >= 0; i--)
+if (!inUse[i])
+{
+inUse[i] = true;
+return pool[i];
+}
+//If we got here, then all the Vectors are in use. We will
+//increase the number in our pool by 10 (arbitrary value for
+//illustration purposes).
+boolean[] old_inUse = inUse;
+inUse = new boolean[old_inUse.length+10];
+System.arraycopy(old_inUse, 0, inUse, 0, old_inUse.length);
+Vector[] old_pool = pool;
+pool = new Vector[old_pool.length+10];
+System.arraycopy(old_pool, 0, pool, 0, old_pool.length);
+for (int i = old_pool.length; i < pool.length; i++)
+{
+pool[i] = new Vector( );
+inUse[i] = false;
+}
+//and allocate the last Vector
+inUse[pool.length-1] = true;
+return pool[pool.length-1];
+}
+public synchronized void returnVector(Vector v)
+{
+for (int i = inUse.length-1; i >= 0; i--)
+if (pool[i] == v)
+{
+inUse[i] = false;
+//Can use clear( ) for java.util.Collection objects
+//Note that setSize( ) nulls out all elements
+v.setSize(0);
+return;
+}
+throw new RuntimeException("Vector was not obtained from the pool: " + v);
+}
+}
+
+
+
+
+Used consistently, this enumeration can provide both speed and memory advantages. The
+enumeration requires less memory than the equivalent strings and makes network transfers faster
+
+
+
+String string = "55";
+int theInt = new Integer(string).intValue( )
+Instead, there is a static method available for parsing:
+int theInt = Integer.parseInt(string);
+
+
+
+
+
+public static Something getNewSomething( )
+{
+return new Something( );
+}
+The replaced implementation that uses cloning looks like:
+private static Something MASTER_Something = new Something( );
+public static Something getNewSomething( )
+{
+return (Something) MASTER_Something.clone( );
+}
+
+Note that the cloned object is still
+initialized, but the initialization is not the constructor initialization. Instead, the initialization
+consists of assigning exactly once to each instance variable of the new (cloned) object, using the
+instance variables of the object being cloned.
+
+
+
+static int[] Ref_array1 = {1,2,3,4,5,6,7,8,9};
+static int[][] Ref_array2 = {{1,2},{3,4},{5,6},{7,8}};
+int[] array1 = {1,2,3,4,5,6,7,8,9}; //faster than cloning
+int[] array1 = (int[]) Ref_array1.clone( ); //slower than initializing
+int[][] array2 = {{1,2},{3,4},{5,6},{7,8}}; //slower than cloning
+int[][] array2 = (int[][]) Ref_array2.clone( );//faster than initializing
+
+
+
+Lazy Initialization
+public getSomething( )
+{
+if (something == null)
+something = defaultSomething( );
+return something;
+}
+A good example is classloading, where classes are loaded dynamically as required.
+
+
+
+Throwing an exception and executing the catch block has a significant overhead. This overhead
+seems to be due mainly to the cost of getting a snapshot of the stack when the exception is created
+(the snapshot allows the stack trace to be printed).
+
+
+
+public static boolean test1(Object o)
+{
+try {
+Integer i = (Integer) o;
+return false;
+}
+catch (Exception e) {return true;}
+}
+public static boolean test2(Object o)
+{
+if (o instanceof Integer)
+return false;
+else
+return true;
+}
+}
+The results of this comparison show that if test2( ) (using instanceof) takes one time unit,
+test1( ) with the ClassCastException thrown takes over 5000 time units in JDK 1.2 (see Table
+6-2). On this time scale, test1( ) without the exception thrown takes eight time units: this time
+reflects the cost of making the cast and assignment.
+
+
+If
+the exception is thrown explicitly (i.e., using a throw statement rather than a VM-generated
+exception such as the ClassCastException or ArrayIndexOutOfBoundsException ), you can
+reduce the cost by reusing an exception object rather than creating a new one. Most of the cost of
+throwing an exception is incurred in actually creating the new exception, which is when the stack
+trace is filled in
+
+
+public static Exception REUSABLE_EXCEPTION = new Exception( );
+...
+//Much faster reusing an existing exception
+try {throw REUSABLE_EXCEPTION;}
+catch (Exception e) {...}
+//This next try-catch is 50 to 100 times slower than the last
+try {throw new Exception( );}
+catch (Exception e) {...}
+The sole disadvantage of reusing an exception instance is that the instance does not have the correct
+stack trace, i.e., the stack trace held by the exception object is the one generated when the exception
+object was created
+
+
+Interfaces are generally more expensive to use in
+casting, and the further back in the hierarchy (and ordering of interfaces in the class definition), the
+longer the cast takes to execute.
+
+
+
+if (obj instanceof Something)
+return ((Something)obj).x + ((Something)obj).y + ((Something)obj).z;
+...
+
+Instead, use a temporary
+if (obj instanceof Something)
+{
+Something something = (Something) obj;
+return something.x + something.y + something.z;
+}
+...
+
+
+
+Local variables remain on the stack, so they can be manipulated directly; the manipulation
+of local variables depends on both the VM and underlying machine implementation. Heap variables
+(static and instance variables) are manipulated in heap memory through the Java VM-assigned
+bytecodes that apply to these variables.
+
+
+Avoid using a method call in the loop termination test. The overhead is significant. I often
+see loops like this when iterating through collections such as Vectors and Strings:
+for(int i = 0; i < collection.size( ); i++)
+
+
+
+System.arraycopy( ) is faster than using a loop for copying arrays in any destination
+
+
+
+use of stack
+public static void filesearch2(String root, String fileEnding)
+{
+Stack dirs = new Stack( );
+dirs.push(root);
+File f;
+int i;
+String[] filelist;
+while(!dirs.empty( ))
+{
+f = new File(root = (String) dirs.pop( ));
+filelist = f.list( );
+if (filelist == null)
+continue;
+for (i = filelist.length-1; i >= 0; i--)
+{
+f = new File(root, filelist[i]);
+if (f.isDirectory( ))
+dirs.push(root+FS+filelist[i]);
+else if(filelist[i].toUpperCase( ).endsWith(fileEnding))
+System.out.println(root+ls+filelist[i]);
+}
+}
+}
+
+
+
+I/O to the disk or the network is hundreds to thousands of times slower than I/O to computer
+memory
+I/O
+buffers throughout the system typically use a read-ahead algorithm for optimization. This normally
+means that the next few chunks are read from disk into a low-level buffer somewhere.
+Consequently, reading sequentially forward through a file is usually faster
+
+Java does provide nonblocking I/O by means of polling. Polling means that every time
+you want to read or write, you first test whether there are bytes to read or space to
+write.
+
+
+Logging always degrades performance
+
+
+
+
+buffered I/O
+performs much better than unbuffered I/O.
+
+
+
+Thinking about
+exactly what is happening, you can see that for the serialization you take the data in some objects
+and write that data out to a stream of bytes, which basically accesses and converts objects into
+bytes. But for the deserializing, you access elements of a byte array and convert these to other
+object and data types, including creating any required objects
+
+
+private void writeObject(java.io.ObjectOutputStream out)
+throws IOException
+{
+out.writeUTF(two);
+out.writeInt(one);
+out.writeObject(four);
+}
+
+private void writeObject(java.io.ObjectOutputStream out)
+throws IOException
+{
+out.writeUTF(two);
+out.writeInt(one);
+out.writeUTF(four[0].two);
+out.writeFloat(four[0].one);
+out.writeUTF(four[1].two);
+out.writeFloat(four[1].one);
+}
+
+
+Given the overheads the serializing I/O classes incur, it has now become obvious that the more
+serializing you handle explicitly, the better off you are
+
+
+
+
+The readObject( ) and writeObject( ) methods must be defined as private according to the
+Serializable interface documentation, so they cannot be called directly. You must either wrap
+them in another public method or copy the implementation to another method so you can access
+them directly. But in fact, java.io provides a third alternative. The Externalizable interface also
+provides support for serializing objects using ObjectInputStream and ObjectOutputStream. But
+Externalizable defines two public methods rather than the two private methods required by
+Serializable.
+
+redefine Foo as implementing Externalizable instead of Serializable
+
+
+The drawback to controlling your own serializing is a significantly higher maintenance
+cost, as any change to the class structure also requires changes to the two
+Externalizable methods (or the two methods supported by Serializable).
+
+
+
+you can
+evenly divide the collection into two or more subsets and have each subset serialized by a separate
+thread (I leave that as an exercise for you)????
+
+
+
+At a lower level, you should be aware that the system reads in data from the disk one page at a time
+(page size is system-dependent, normally 4 or 8 KB).
+
+
+To optimize a sort, you can normally
+get enough improvement by reimplementing a standard sort (such as quicksort) as a method in the
+class being sorted
+
+
+
+public class Sortable
+implements Comparable
+{
+int order;
+public Sortable(int i){order = i;}
+public int compareTo(Object o){return order - ((Sortable) o).order;}
+public int compareToSortable(Sortable o){return order - o.order;}
+}
+public static void quicksort(Comparable[] arr, int lo, int hi)
+{
+...
+int mid = ( lo + hi ) / 2;
+Comparable middle = arr[ mid ]; //Comparable data type
+...
+//uses Comparable.compareTo(Object)
+if(arr[ lo ].compareTo(middle) > 0 )
+...
+}
+You can
+modify the quicksort even further to cater specifically to Sortable objects, so that you call the
+Sortable.compareToSortable( ) method directly. This avoids yet another cast, the cast in the
+Sortable.compareTo( ) method,
+
+
+
+In the case of nonarray elements such as linked-list structures, a recursive merge sort is the best
+sorting algorithm and can be faster than a quicksort on arrays with the same dataset
+
+
+This framework allows you to change the sort algorithm simply by changing the sort object you use??????
+
+
+
+
+While it is often
+possible to get the same effect with clever programming in a single thread, Java's extensive support
+of threads makes it easier to use multiple threads. In addition, single-threaded applications cannot
+take advantage of multi-processor machines
+
+
+
+Synchronization is achieved using monitors. Every object can have a monitor associated
+with it, so any object can synchronize blocks
+
+
+
+a block defined with a synchronized(this) expression
+is synchronized on the monitor of the this object. If this is an object that is different for
+two different threads, both threads can gain ownership of their own monitor for that
+block, and both can execute the block at the same time. This won't matter if the block
+affects only variables specific to its thread (such as instance variables of this), but can
+lead to corrupt states if the block alters variables that are shared between the threads.
+
+
+
+When tuning threads, it is easy to
+make a little change here, and a little change there, and end up with total confusion, race conditions,
+and deadlock.
+
+
+unsynchronized
+implementation held in a synchronized wrapper
+
+"synchronized by default" approach, your application has an increased chance of encountering
+deadlocks
+
+The idea behind synchronized wrappers is that you build your class completely unsynchronized, as
+if it is to be used single-threaded. But you also provide a wrapper class with exactly the same
+interface. The difference in the wrapper class is that all methods that require synchronization are
+defined with the synchronized modifier. The wrapper could be a subclass with methods
+reimplemented, but more typically, it is a separate class that holds an internal reference to an
+instance of the unsynchronized class and wraps all the methods to call that internal object. Using
+synchronized wrappers allows you the benefits of thread-safe objects by default, while still retaining
+the capability to selectively use unsynchronized versions of those classes in bottlenecks.
+
+public interface Adder {
+public void add(int aNumber);
+}
+
+public class UnsyncedAdder
+implements Adder
+{
+int total;
+int numAdditions;
+public void add(int aNumber) {total += aNumber; numAdditions++;}
+}
+
+public class SyncedAdder
+implements Adder
+{
+Adder adder;
+public SyncedAdder(Adder a) {adder = a;}
+public synchronized void add(int aNumber) { adder.add(aNumber);}
+}
+
+Old collection classes (e.g., Hashtable , Vector) that are already synchronized remain so for backward compatibility
+
+
+
+Arrays
+are not proper classes that can be extended
+
+
+
+HashSet uses an underlying HashMap , so the way HashSet
+maintains uniqueness is extremely straightforward. Objects are added to the set as the keys to the
+HashMap, so there is no need to search the set for the elements

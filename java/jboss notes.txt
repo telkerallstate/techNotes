@@ -1,0 +1,151 @@
+Contrary to many people’s first assumptions, there are no user manuals, reference
+guides, or javadocs for the application server in the docs directory. These have to be
+downloaded from the jboss.com website
+
+One popular directory under this structure is the docs/examples/jca directory. This
+directory contains examples of different data source configuration files for different
+databasess
+
+The JAW Motors application supports a fictitious automobile dealership. Each chapter
+progressively adds a new J2EE technology that solves a specific business problem. Viewing
+cars on a website involves JSP pages and some form of persistence (JDBC or Hibernate).
+Performing a credit check sends a JMS message and an email response using JavaMail.
+Purchasing a car requires the transactional support of Stateless Session Beans. Sharing data
+from the JAW Motors inventory with other dealerships involves setting up Web Services
+
+
+The dirty little secret of choosing a framework is that they are more similar than
+they are different. They all follow the same basic MVC pattern. So whether you
+choose to use Struts, JSF, Webwork, Tapestry, or any of the others, you are
+doing essentially the same thingusing a MVC framework
+
+Since we point at a test server for this book, we've provided a convenient couple
+of Ant targets to deploy your EAR. To do a hot deploy, make sure that you have
+the $JBOSS_HOME environment variable set, and then simply type ant deploy. The
+Ant task will copy the EAR file to the correct location for you.
+If you want to do a cold deploy, shut down JBoss, type Ant cleandeploy, and then
+start JBoss back up again. The cleandeploy target will delete the existing EAR file
+and several temporary directories. Running cleandeploy against a running JBoss
+instance will cause bad things to happen, so make sure that JBoss is not running
+before invoking it.
+
+
+One of the most important parts of the WAR file is the deployment descriptorweb.xml. It lists
+each servlet and tells the servlet container how to deploy them. By maintaining this file by
+hand, you almost certainly guarantee that you will forget to update it when you add new
+components to your application. By using XDoclet in your build process, we can generate it
+automatically by using nothing but your source code and some well-placed comments
+
+
+As you state JPA is just a specification, meaning there is no implementation. You can annotate your classes as much as you would like with JPA annotations, however without an implementation nothing will happen. Think of JPA as the guidelines that must be followed or an interface, while Hibernate's JPA implementation is code that meets the API as defined by the JPA specification and provides the under the hood functionality.
+
+When you use Hibernate with JPA you are actually using the Hibernate JPA implementation. The benefit of this is that you can swap out Hibernate's implementation of JPA for another implementation of the JPA specification. When you use straight Hibernate you are locking into the implementation because other ORMs may use different methods/configurations and annotations  therefore you cannot just switch over to another ORM
+
+
+JPA providers develop a JPA implementation that meets the requirements of the JPA specification.  Hibernate is a JPA Provider, as well as others such as EclipseLink and TopLink. 
+
+
+
+
+The alternative to a SFSB is to put a JavaBean in the HttpSession. There are two problems with this:
+
+(1) HttpSession contract does not have dirty checking, so this approach tends to break in a custered environment (yes, I realize that Coherence provides dirty checking, as does JBoss HttpSession implementation, but this is definitely nonstandard). The only way to make it work in a standard way is to re-set the attribute each time you change the bean state, which is extremely bug-prone and difficult to test.
+
+(2) A JavaBean does not have things like transaction demarcation on its method calls, so you would have to either pass the JavaBean object to a SLSB to do your business logic (very non-OO) or basically reimplement the functionality that is already provided by SFSBs if you wanted to add the business logic to the bean.
+
+In practice, in J2EE, people waste enormous amounts of code passing state to and from the HttpSession and the SFSB. This is totally crazy, since J2EE already provides a construct that saves you all this work.
+
+
+Using tasks like
+exec, rexec, or sshexec, you can even remotely start and stop JBoss
+
+
+Hibernate is smart enough to handle that, but at some point you are going to come
+up with either a complicated object model or a highly normalized relational database that
+doesn't map nicely through Hibernate
+
+
+Like Hibernate, Spring is not J2EE-specification compliant and can run
+inside either a J2EE container or standalone.
+
+
+
+Here are some reasons for not using EJBs:
+Your application uses threads
+The EJB specification forbids using threads because the threads your code creates are
+outside the container's control and could cause unexpected results.
+Your application is read-only or read-mostly
+If your application reads data from your database most or all of the time, then
+transactions aren't important to you. In this case, EJBs are overkill.
+Here are some dubious or wrong reasons for developing with EJBs:
+You want to use database connection pooling with JDBC DataSources
+You don't need an EJB or an EJB container to use a DataSource. You can configure a
+standalone Tomcat container with a database connection pool and use a DataSource.
+You want to use Entity Beans for persistence
+Other third-party ORMs, such as Hibernate, provide more functionality and better
+performance.
+You think you'll need them later, so you're adding them now
+Don't over-architect. EJBs add complexity, so add them only when they help you solve
+a problem. Remember that you can always go back and refactor to an EJB solution
+when the need arises.
+You want to group your related business logic together
+You could group order-related functionality into an EJB, but you could also do this with
+a POJO. The need to group related logic together isn't a strong enough reason to use
+an EJB. But if your business processes require transactions or if you have external
+remote clients, you should consider using an EJBsee the good reasons below.
+
+
+Message-Driven Beans (MDBs)
+MDBs are good for processing business logic asynchronously
+
+
+Due to performance reasons, Stateful Session Beans have fallen into disuse, and we
+recommend using Stateless Session Beans
+
+
+There is really no difference in deploying a Stateful or Stateless Session Beanyou specify the
+Session Bean type in the ejb-jar.xml deployment descriptor
+
+
+Once we move to separate boxes, we need to start making Remote calls to our EJB instead of
+local calls. Since our Servlets and EJBs are no longer in the same JVM and memory space, the
+container can no longer make calls by reference. It now has to make calls by valuethis is done
+by serializing the object, streaming it over the network from one box to the other and
+reconstituting it on the other side
+
+An EJB's Local and Remote Interface methods serve the same
+purpose as public methods for a POJO.
+
+
+We moved our business logic from the Controller Servlet into the InventoryFacade
+Stateless Bean for the following reasons:
+Running our code from within an EJB enables us to use Container-Managed
+Transactions (CMT), which greatly reduces the amount of code you have to
+write.
+
+
+
+When using Hibernate 3 from within an EJB that uses CMT, remember to do the
+following:
+Make sure that your EJB method runs within the scope of a transaction.
+Get a Hibernate Session by using the Session Factory's getCurrentSession( )
+method.
+The Hibernate transaction API calls are no longer needed because the container
+manages the transactions.
+Never close your Hibernate Session because doing this loses your changeslet
+the container do it for you
+
+
+
+
+Message-Driven Beans (MDBs) are EJBs that receive and process JMS messages. MDBs don't
+maintain state between invocations, so they resemble Stateless Session Beans. But MDBs
+differ from Stateless Session Beans in that:
+A client is completely decoupled from an MDBthe client sends a JMS message and the
+MDB picks up the message.
+After sending a JMS asynchronously, the client doesn't wait for the MDB to receive the
+message. The client continues executing other business logic
+
+
+Java 2 Collections and arrays of custom data types are incompatible with Web
+Services, so wrap an array of custom data types in a Java Bean

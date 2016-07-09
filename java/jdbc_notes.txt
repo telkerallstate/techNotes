@@ -1,0 +1,32 @@
+Statement (regular SQL statement)
+
+PreparedStatement (more efficient than statement due to pre-compilation of SQL)
+
+CallableStatement (to call stored procedures on the database)
+
+The standard isolation levels are
+TRANSACTION_NONE
+TRANSACTION_READ_COMMITTED
+TRANSACTION_READ_UNCOMMITTED
+TRANSACTION_REPEATABLE_READ
+TRANSACTION_SERIALIZABLE
+
+
+There are 2 approaches for registering the Driver:
+
+Class.forName(): This method dynamically loads the driver's class file into memory, which automatically registers it. This method is preferable because it allows you to make the driver registration configurable and portable.
+
+DriverManager.registerDriver(): This static method is used in case you are using a non-JDK compliant JVM, such as the one provided by Microsoft.
+
+
+
+
+preapredstatement
+The DBMS parses, compiles, and performs query optimization on the statement template, and stores the result without executing it.
+A stored procedure, which is also precompiled and stored on the server for later execution, has similar advantages.
+A number of programming languages support prepared statements in their standard libraries and will emulate them on the client side even if the underlying DBMS does not support them, including Java's JDBC,
+
+
+
+
+ Hibernate uses underlying jdbc to interact beside, but it has to know which jdbc driver to use (mysql, postgresql...). That's another reason to tell Hibernate which dialect to use

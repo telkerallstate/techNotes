@@ -1,0 +1,114 @@
+Spring does not provide a persistence
+framework similar to Hibernate. Instead, it provides an abstraction layer over
+Hibernate to offer more flexibility, produce more effective code, and reduce
+maintenance costs
+
+
+Hibernate is easy to learn, simple to use,
+comprehensive, and (unlike EJB) does not need an application server
+
+Configuraion cfg = new Configuration();
+cfg.configure();
+SessionFactory sessionFactory = cfg.buildSessionFactory();
+Student student = …//a new instantiated student object
+Session session = sessionFactory.openSession();
+Transaction tx = session.beginTransaction();
+session.save(student);
+tx.commit();
+session.close();
+
+
+With
+the IoC core container, Spring enables the management of object dependencies by
+pushing dependencies into objects at runtime, instead of letting the objects pull
+their dependencies from their environment.
+
+
+AOP allows us to
+consolidate functionality, which would be otherwise scattered in different places,
+in a single place. Managing transactions is an example of this functionality
+
+AOP complements object-oriented programming (OOP) by introducing a new
+concept, called concerns or aspects, to model real-world objects.
+
+logging, security, and transaction are common
+examples for a concern, since they should be applied to sets of methods without any
+relationship to the object hierarchy.
+
+
+It allows a variety of
+different view technologies, such as JavaServer Pages, Velocity, and iText PDF
+to be used. You can use MVC with Spring's other services, such as AOP and IoC.
+Furthermore, Spring can be integrated with other web frameworks, including Struts,
+WebWork, Tapestry, and JSF.
+
+Hibernate provides two caches, each in a
+different level. As the first-level cache, each Session object has its own cache, which is
+also called transactional cache. This cache holds the persistent objects of Session, and
+minimizes database interactions, thereby enhancing efficiency and performance.
+A third-party cache provider provides the second-level cache, which is configured as
+a plug-in in Hibernate. The second-level cache holds the repetitive persistent objects
+associated with all session objects.
+
+Hibernate does not provide any way to enable or disable the
+first-level cache. However, the second-level cache is optional, so you can ignore it or
+configure Hibernate using any third-party cache provider. You can enable or disable
+the second-level cache through general Hibernate configuration
+
+
+Hibernate also provides a rich query API, called the Criteria API, to
+programmatically describe the objects being loaded, and then load them. The
+following snippet shows the Criteria approach to load the Student instance
+with the identifier value 41:
+Criteria criteria = session.createCriteria(Student.class);
+criteria.add(Restrictions.idEq(new Integer(41)));
+List result = criteria.list();
+As with HQL, the result object is a java.util.List object, which contains the
+Student instance associated with the identifier value 41.
+Although HQL and the Criteria API are interchangeable, in most cases, HQL is a
+better fit than Criteria, and in particular cases Criteria may fit better than HQL
+
+Spring provides a transaction abstraction layer over JTA
+
+Spring provides a rich, powerful web framework based on the
+Model-View-Controller (MVC) pattern
+
+
+
+You can pay for a Java EE app server (e.g., WebLogic, WebSphere) or use an open source one (JBOSS, Glassfish, Tomcat and OpenEJB and ActiveMQ), or you can stick to Spring and deploy on Tomcat, Jetty, Resin or any other servlet/JSP engine.
+
+Spring offers a lot of choice by being technology agnostic: persistence (Hibernate, iBatis, JDBC, JDO, JPA, TopLink), remoting (HTTP, Hessian, Burlap, RMI, SOAP web service), etc.
+
+EJB 3.0 is a spec with many vendors; Spring can only be had from Spring Source
+
+
+
+EJB again gives you things like transaction management and pooling that you might not get "out of the box" with web services.
+
+
+Another disadvantage of EJBs is that they typically aren't firewall friendly, meaning that it is difficult to invoke EJBs behind firewalls
+ Because SOAP (the represenation and invocation) standard for web services typically supports HTTP as a transport, the firewall issue isn't as much of a concern because most firewalls open port 80 (or 8080) for HTTP traffic.
+
+
+The key thing is that since services typically don't maintain session state, all you can do is make service style requests of them
+
+Web Services are a solution for use with remote clients that exist outside your sphere of control.
+
+
+ EJBs, RMI over IIOP, has multiple host:port combinations that the firewall would need to allow:
+A SOAP request being made over an HTTP request is running over a stateless protocol.  This means a socket connection is established, a request is made, a response is given, the connection is closed
+
+
+
+Web Services are easier to use and manage from a client standpoint because there are no client stubs used.
+
+
+Data marshalling is an extremely expensive task
+In generally, (de)serializing Java objects is much more efficient than building and parsing XML documents.
+
+
+Any non-trivial application will eventually have to account for updating multiple databases or accessing multiple database connections in the same unit of work.  This is where the XA protocol comes into play.
+The JTS Transaction Manager (or JTA Transaction Manager as I have been referring to it) is a Java implementation of the XA Protocol's Transaction Manager.
+
+
+In an EJB-based application, using container-managed transactions  is probably the most straightforward way of providing XA transactions to an application.

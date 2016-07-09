@@ -1,0 +1,50 @@
+While IoC is a general design principle, Dependency Injection (DI) is a concrete design
+pattern that embodies this principle
+
+public class Container {
+ReportGenerator reportGenerator = new PdfReportGenerator();
+components.put("reportGenerator", reportGenerator);
+ReportService reportService = new ReportService();
+components.put("reportService", reportService);
+
+
+
+public class ReportService {
+private ReportGenerator reportGenerator =
+(ReportGenerator) Container.instance.getComponent("reportGenerator");
+
+
+Thismodificationmeans that ReportService doesn’t have to worry about which
+ReportGenerator implementation to use, so you don’t have tomodify ReportService any
+more when you want to switch report generator implementation
+
+public class Main {
+public static void main(String[] args) {
+Container container = new Container();
+ReportService reportService =
+(ReportService) container.getComponent("reportService");
+reportService.generateAnnualReport(2007);
+}
+}
+
+
+In conclusion, employing a container can help reduce coupling between different components
+within a system, and hence increase the independence and reusability of each
+component
+
+
+-----------------
+public class ServiceLocator {
+private static Container container = Container.instance;
+public static ReportGenerator getReportGenerator() {
+return (ReportGenerator) container.getComponent("reportGenerator");
+}
+}
+
+public class ReportService {
+private ReportGenerator reportGenerator =
+ServiceLocator.getReportGenerator();
+
+
+Applying the Service Locator pattern can help to separate the lookup logic fromyour
+components,

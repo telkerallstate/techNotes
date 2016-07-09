@@ -1,0 +1,359 @@
+Use the Collections.unmodifiableXxxx() method with the collection as an argument,which returns an immutable object of specific type. 
+
+
+List immutableEmptyList=Collections.EMPTY_LIST 
+
+Set allows at most one null element 
+
+data structure that a Set uses to store its elements
+Map
+
+Vector doubles its size , but ArrayList only increases the capacity to half of current size
+
+
+HashMap takes null as keys
+
+
+Hashtable won't allow either null key or null value, but HashMap allows one null key and multiple null values
+
+Iterator in HashMap is Fast-fail where as enumerator is fail safe in HashTable
+
+
+Enumeration is an interface which gives an readonly access to the datastructure it has access to.Only Vector and Hashtable
+
+
+
+"Fail safe" means: it won't fail.
+
+"Fail fast" means: Iterator fails as soon as it realizes that the structure of the underlying data structure has been modified since the iteration has begun
+
+
+The only difference is fail-safe iterator doesn't throw any Exception, contrary to fail-fast Iterator, if Collection is modified structurally while one thread is iterating over it.
+
+
+public @interface MyAnnotation{ }
+
+
+Since the retention of the override is only in the source files, After the file compiles to class the annotation doesn't retain in the .class file ,And override can only be applied to methods in java code.
+
+
+SOURCE retains the annotation in the source code usually helpful for document generation. CLASS, in the class file,and RUNTIME when the runtime environment would take advantage of the annotation
+
+
+
+Static methods don't override
+ call to the method of reference type.
+
+
+Fail-Safe Iterator (java.util.concurrent - ConcurrentSkipListSet, CopyOnWriteArrayList, ConcurrentMap)
+
+
+
+servletconfig
+We can access ServletContext through it 
+provide deploy-time information to server 
+There is one servlet config per one servlet 
+
+servletcontext
+There is one ServletContext per one application 
+Generally it is used to get web app parameters
+We can get Server Information though it
+
+
+In principle, Spring covers all capabilities of EJB3 session beans today, offering more flexible and more sophisticated management and deployment options. The main benefit with modelling components as EJBs is that you’re able to export remote services through your J2EE server (to support load balancing and failover)
+
+
+they borrowed a lot of ideas from Spring/Hibernate and other frameworks and tried to provide the best of all of them while still maintaining backwards compatibility with EJB 2.x.
+
+
+private static final long serialVersionUID = 1;
+
+The serialization runtime associates with each serializable class a version number, called a serialVersionUID, which is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. If the receiver has loaded a class for the object that has a different serialVersionUID than that of the corresponding sender's class, then deserialization will result in an  InvalidClassException
+
+
+
+Memory leaks occur in Java programs not because you as the programmer forget to
+deallocate some memory, but because you as a programmer forget and leave a reference
+to an object hanging around in some other object when that reference is no longer
+needed.
+
+
+java.rmi.Remote. This is a marker interface, indicating that the interface that extends
+it will be used to define methods that will be made available to calls from other address
+spaces.
+
+
+
+List<Fielder.AttemptResult> getFielding(UUID forPlayer);
+
+
+
+object is
+more than just the data held by the object and the order in which that data is presented.
+An object includes an interface and the methods that allow one to use the interface to
+manipulate the underlying data. Objects can also contain references other objects.
+Getting all of this in some representation that can be sent over the wire, and reconstructing
+that representation when it gets to the other side, is the job of object
+serialization.?
+
+
+
+JNDI is similar to JDBC in that they are both Object-Oriented Java APIs that provide a common abstraction for accessing services from different vendors. While JDBC can be used to access a variety of relational databases, JNDI can be used to access a variety of of naming and directory services
+
+
+
+Each of these storage techniques represents a different
+type of naming or directory service.The numerous storage methods make your job as a developer tougher because you must use a different
+programming technique to retrieve data from the sources. Each has its own semantics as well as its own API.
+For example, you retrieve information differently from a file system, an RMI registry, and an LDAP-enabled
+directory.
+
+
+You can use the
+JNDI API to access an LDAP-enabled directory, RMI registry, or file system with the same methods
+
+
+
+Naming services are often compared to phone books because they store only name-value pairs. The following
+is a partial list of common naming services you may use on a regular basis:
+Domain Name System (DNS): The Internet relies heavily upon DNS, a simple naming service that
+maps IP addresses to user-friendly names.
+· 
+File systems: These bind a user-friendly name, such as resume.doc, to a file handle used by the
+operating system. You use the name to access the file.
+· 
+· RMI Registry: Java’s RMI Registry maps names to Java objects
+
+
+
+However, do not confuse objects in naming services with Java objects. An object in a naming service is an
+entry. You can store strings or binary data as objects in a naming service
+
+
+A context represents a set of objects with names bound to them
+
+
+When you access a directory service with JNDI you must identify a starting context, or initial context
+
+
+
+In Java terminology, directory services extend naming services
+The added benefit of a directory service is that you can attach
+descriptive attributes to stored objects
+
+Using attributes to describe objects makes directory services very flexible. For example, you may see a
+directory service used for:
+· Access control to provide a single login to a service such as a network or an application.
+· Object repositories in which to store Java components, such as EJB’s or JDBC’s DataSource objects.
+· Lookup directories to store information on people, assets, or software components
+
+
+
+DAO is an abstraction of data persistence. Repository is an abstraction of a collection of objects.
+
+
+
+
+Some people consider LDAP a directory service. It is not. LDAP defines a protocol for communication
+with a directory service. Directory services that use LDAP for the communication layer are known as
+“LDAP-enabled.”
+
+
+Directory services play a major role in software architecture that use EJBs, either for storing resources
+natively or for specifying their location. A typical use of a directory service is to store JDBC DataSource
+objects in a directory service
+
+
+
+The other JNDI component is the Service Provider Interface (SPI), which is equivalent to a driver
+However, unlike a JDBC driver, the client
+API and service-provider implementations are separate and are usually supplied as a separate jar file
+
+
+At a minimum, you must set two environment properties, the service provider and the directory-service
+location.
+
+To set the service provider, you assign a String value representing the fully qualified name for the
+driver to the property Context.INITIAL_CONTEXT_FACTORY. (Doing this is analogous to using the
+Class.forName() method to initialize a JDBC driver.)
+
+Hashtable env = new Hashtable();
+//Specify service provider class
+String sp = "com.sun.jndi.ldap.LdapCtxFactory";
+env.put(Context.INITIAL_CONTEXT_FACTORY, sp);
+//Specify location of LDAP directory service
+String jndiUrl = "ldap://localhost:389/o=MyLdapData";
+env.put(Context.PROVIDER_URL,jndiUrl);
+
+
+java appln-------jndi api-------jndi spi---services
+
+
+
+
+. A JNDI resource file is a file in the properties file format
+ Here is an example of a JNDI resource file:
+
+ java.naming.factory.object=com.sun.jndi.ldap.AttrsToCorba:com.wiz.from.Person
+ java.naming.factory.state=com.sun.jndi.ldap.CorbaToAttrs:com.wiz.from.Person
+ java.naming.factory.control=com.sun.jndi.ldap.ResponseControlFactory
+
+
+
+
+if you add or change a database location you want to avoid having
+to re-deploy your application. You can do this by making the client’s code base independent of any
+database-specific information such as server location or database driver names
+
+
+
+
+
+You can use a DataSource object either locally or with JNDI. When you use it locally you do not need to
+register and load database-driver information. When you use it with JNDI you get all the benefits of local use,
+and in addition you can abstract the database location and connection information from a client. If you do this,
+the client won’t have to supply usernames, passwords, or a JDBC URL to open a database connection
+
+
+with DataSource objects we never need to hard-code the driver
+name or set the value in a property file--chk it
+
+
+DataSource and JNDI configuration-- chk figure 14-1
+
+
+
+Because the DataSource interface is part of the javax.sql package, driver vendors must implement the
+functionality
+
+
+DataSource interface lacks methods for specifying
+connection parameters-- username and password, or JDBC URL
+Vendors must provide these setter and getter methods
+
+
+
+
+Using DataSource objects and JNDI together requires two steps:
+You must load the DataSource object into a directory service and bind a logical name to it. This
+requires that you use the Context.bind() method found in the javax.naming package.
+1.
+The client has to retrieve the DataSource object from the JNDI naming system using the
+Context.lookup() method. After the client retrieves the object, it uses the DataSource.getConnection()
+method to open a database connection.
+
+
+
+String sp = "com.sun.jndi.fscontext.RefFSContextFactory";
+String file = "file:/e:/JNDI";        // make sure tis exists
+String dataSourceName = "jdbc/myDatabase";
+Hashtable env = new Hashtable();
+env.put (Context.INITIAL_CONTEXT_FACTORY, sp);
+env.put (Context.PROVIDER_URL, file);
+ctx = new InitialContext(env);
+//Bind the DataSource object
+bindDataSource(ctx, dataSourceName);
+//Retrieve the DataSource object
+DataSource ds = null;
+ds = (DataSource) ctx.lookup(dataSourceName);
+
+public static void bindDataSource(Context ctx, String dsn)
+throws SQLException, NamingException{
+//Create an OracleDataSource instance
+OracleDataSource ods = new OracleDataSource();
+//Set the connection parameters
+ods.setUser("toddt");
+ods.setPassword("mypwd");
+ods.setDriverType("thin");
+ods.setDatabaseName("ORCL");
+ods.setServerName("localhost");
+ods.setPortNumber(1521);
+//Bind the DataSource
+ctx.rebind (dsn,ods);
+}
+In a real application you will probably not have to
+bind your own DataSource object into a naming service. A systems administrator usually performs this task
+
+
+
+
+The JAR file or directory that contains a META-INF/persistence.xml file is called the
+“root” of the persistence unit, and this may be:
+• An EJB JAR file
+• The WEB-INF/classes directory of a WAR file
+• A JAR file in the WEB-INF/lib directory of a WAR file
+• A JAR file in an EAR library directory
+• An application client JAR file
+
+
+
+https = http + ssl
+
+
+ when enterprise systems cannot share data, you waste time, money and energy duplicating that data in each application. Additionally, users may be forced to leave one application to access the data stored in another
+
+
+
+. "One of the primary business drivers behind the development of middleware was mergers and acquisitions. When companies merged, they found they had information stored in separate systems and locations but no way to share it."
+
+
+
+While the primary goal of ERP is to improve and streamline internal business processes, CRM attempts to enhance the relationship with customers and SCM aims to facilitate the collaboration between the organization, its suppliers, the manufacturers, the distributors and the partners.
+
+
+
+ E-business software systems generally fall into four categories: Enterprise Resource Planning (ERP), Customer Relationship Management (CRM), Supply Chain Management (SCM) and Sales Force Automation (SFA).
+
+
+
+Business Process Management is the organization of business capabilities (people, process, technology, and data) so that common mechanisms can be discovered, simplified, and improved.  The result: a simpler, more efficient and more rational portfolio of processes.  This reduces cost and increases business agility.
+ 
+Service Oriented Architecture is the organization of technical capabilities (activities, events, documents, and data) so that common services can be discovered, simplified, and improved.  The result: a simpler, more efficient and more rational portfolio of services.  This reduces cost and increases business agility.
+
+BW is like some “magic eyeglasses” from a Disney movie, reducing all the complexity and pain in system integration to just plain, simple, XML
+
+
+
+Let me show you how you can eliminate donkey work. Let me show you how you can treat “Events” as “first class citizens”. This is not abstract thinking. I have seen this, in production, at multiple customer sites.
+
+ Nodes act as sandboxes for applications.
+
+
+An ASCII file is a binary file that stores ASCII codes. Recall that an ASCII code is a 7-bit code stored in a byte
+
+
+n my experience, the real performance bottleneck is usually the XML parsing ( at both ends), and if you make the structure light and very easy to parse and use very small element names, you should be fine with performance
+
+I would say that as a thumb rule, you can consider that 1 CPU can process approx 1 MB of XML Message per second.
+
+
+
+TIBCO Testing More focus on the Core functionality like response time, process, Web service, Protocol support, key business scenarios and environment specific scenarios like what happened in case of EMS server is down or DB Down or service instance are not running, Critical engine crash, fall-back file
+
+
+ Note that AMQP is a messaging protocol while JMS is an API (which can even use AMQP as transport). You can use AMQP directly in Java Applications with Libraries such as the RabbitMQ Java Client.JMS does not define any transport protocol (in contrast to MQTT) and anything could be used here. I personally think TCP is a good fit here, too.
+
+
+Message Queues has a lot more features but this is some rule of thumb to decide if you want to handle error conditions yourself or leave them to the message queue.
+
+
++-----------------------------------------------------------------------------+
+¦   Property    ¦     HashMap       ¦    Hashtable      ¦  ConcurrentHashMap  ¦
+¦---------------+-------------------+-----------------------------------------¦ 
+¦      Null     ¦     allowed       ¦              not allowed                ¦
+¦  values/keys  ¦                   ¦                                         ¦
+¦---------------+-------------------+-----------------------------------------¦
+¦Is thread-safe ¦       no          ¦                  yes                    ¦
+¦---------------+-------------------+-----------------------------------------¦
+¦     Lock      ¦       not         ¦        locks the portion of             ¦ 
+¦  mechanism    ¦    applicable     ¦                  map                    ¦ 
+¦---------------+-------------------------------------------------------------¦
+¦   Iterator    ¦               fail-fast               ¦       fail-safe     ¦ 
++-----------------------------------------------------------------------------+
+
+
+
+
+
+
+

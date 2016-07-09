@@ -1,0 +1,52 @@
+New
+messaging techniques and technologies have been developed, including messagedriven
+beans (as part of the EJB specification), the Spring messaging framework, Event-
+Driven Architecture, Service-Oriented Architecture, RESTful JMS interfaces, and the
+Enterprise Service Bus (ESB), to name a few
+
+
+lack of reliability for web services make
+messaging a better integration choice
+
+
+A decentralized architecture usually implies that an IP multicast protocol is being used.
+A centralized architecture usually implies that the TCP/IP protocol is the basis for
+communication between the various components.
+
+In centralized architectures, the message server is a middleware server or
+cluster of servers. In decentralized architectures, the server refers to the local serverlike
+facilities of the client.
+
+
+One of the distinguishing characteristics
+of point-to-point messaging is that messages sent to a queue are received by one and
+only one receiver, even though there may be many receivers listening on a queue for
+the same message
+
+
+Within the JMS general API, there are seven main JMS API interfaces related to sending
+and receiving JMS messages:
+• ConnectionFactory
+• Destination
+• Connection
+• Session
+• Message
+• MessageProducer
+• MessageConsumer
+
+
+JNDI lets you write code that can access different directory and
+naming services, such as LDAP(Lightweight
+Directory Access Protocol (LDAP)), NDS, CORBA Naming Service, and proprietary
+naming services provided by JMS servers
+
+
+
+Typically, client applications use HTTP/S as the connection protocol when invoking a WebLogic Web Service. You can, however, configure a WebLogic Web Service so that client applications use JMS as the transport instead.
+When a WebLogic Web Service is configured to use JMS as the connection transport, the endpoint address specified for the corresponding port in the generated WSDL of the Web Service uses jms:// in its URL rather than http://. An example of a JMS endpoint address is as follows:
+
+ jms://myHost:7001/transports/JMSTransport?URI=JMSTransportQueue
+
+Although you cannot invoke the Web Service using HTTP, you can view its WSDL using HTTP, which is how the clientgen is still able to generate JAX-RPC stubs for the Web Service.
+
+Using JMS transport is an added-value WebLogic feature; non-WebLogic client applications, such as a .NET client, may not be able to invoke the Web Service using the JMS port.
