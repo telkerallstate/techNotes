@@ -1,0 +1,9 @@
+SELECT * FROM TQTESTEIPBWPMQA19.NJAMS_T_ASPECTS
+
+select * from all_tables where owner='TQTESTEIPBWPMIT19'
+
+select partnercode from TQPRODEIPASPDA19.archive_servicerequests
+
+select 
+       cast(from_tz(to_timestamp('2015-05-05 18:25:43','YYYY-MM-DD HH24:MI:SS'),'GMT') AT TIME ZONE 'EST' as timestamp) t
+     FROM dual;

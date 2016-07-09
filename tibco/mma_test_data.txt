@@ -1,0 +1,41 @@
+8007928741
+NiasS136
+
+
+WBADT63451CF03761
+
+847-431-2990
+
+
+5112345112345114
+
+60062
+
+
+
+
+Case Id: 51447357
+
+
+
+s MI1413521
+
+
+speedqa02	Auto123	
+speedqa03	Auto123	
+speedqa04	Auto123	
+speedqa05	Auto123	
+speed2	Auto123	
+speed19	Auto123	
+speed5	Auto123	
+speed6	Auto123	
+speedqa06	Auto123	
+speedqa07	Auto123	
+speedqa08	Auto123	
+
+
+
+select a.fax_trans_id,a.usage_id,a.call_id,a.fax_txt,a.mstr_status_id,b.mstr_status_desc
+from cmdowner.FAX_TRANS a, cmdowner.MSTR_STATUS b
+where a.call_id='51447357' and a.MSTR_STATUS_ID=b.MSTR_STATUS_ID
+it shows failure

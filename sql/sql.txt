@@ -1,0 +1,14 @@
+SELECT REGEXP_SUBSTR(payload,'<c:usageId>([[:alnum:]]+\.?){1,1}</c:usageId>?')usage_id, payload
+FROM TQTESTEIPBWPMQA19.NJAMS_T_MONITOR_EVENTS
+where eventmessage='CSRCreateWebDispatch'
+and eventdatetime between 
+(to_timestamp('2015-07-20 13:00:00','YYYY-MM-DD HH24:MI:SS')) 
+and to_timestamp('2015-07-24 13:00:00','YYYY-MM-DD HH24:MI:SS')
+
+
+alter session set nls_date_format = 'DD-MON-YYYY HH24:MI:SS';
+
+
+
+SELECT owner, table_name
+  FROM all_tables

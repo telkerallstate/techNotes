@@ -1,0 +1,24 @@
+tuple,field,keyfield- mandatory while createing space
+
+has optin to configure field values as encrypted ones
+
+keyfield will bydefault act as index, but we can add other fields as indexes
+
+hashindex and treeindex available
+
+if diff discovery url is used to connect a particular metaspace then new metaspace gets created on that url
+
+
+each peer will be listneing using a unique listner url
+
+
+asservice.exe will create member and connect to space. If we want to have own name for member, run the asagent from cmd
+
+as-agent.exe -metaspace "ms" -name "name1"
+
+as-agent will connect as seender. if we want other client to connect
+
+
+while creating space we can mention read/write timeouts.
+also if the minimum seeder count is 1 the other seeder forms FT
+

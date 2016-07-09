@@ -1,0 +1,29 @@
+The provider selection is a three-step process.
+•	First,  the system will select providers ELIGIBLE for bidding (offer and response) base on ranking of likelihood of timeliness of arrival (predictive criteria). Base on this criterion, offers will be sent.
+•	Second, providers (dispatcher, mobile users or automated system logic) will reply with an ETA bid. 
+•	Lastly, the system will select the best provider based on the received bid responses and weighted by multiple factors (auction criteria).
+
+Sending multiple drivers and letting consumer pick the driver is not included in the current release. A single best match for a driver will be sent to consumer application and will be selected by default.
+
+ETA - estimated time of arrival
+
+
+Formula for unable to meet ETA: System ETA > ETA at bid.
+
+
+GOA (Gone On Arrival)
+
+----------------------------------------------------
+
+
+
+P-Test has ActiveSpaces servers in both Rochelle and Hudson.   All other TIBCO technologies only have Hudson servers
+
+
+
+--------------
+Canceling a digital dispatch (before receiving an RET) is supported for ALL partners today.  Canceling after a dispatch is confirmed is only available via RoadSmart when initiated from the ADIP Customer apps (GH Rescue app, web, etc.).
+
+
+
+tables prefixed with AS_ are used to recover data from AS.

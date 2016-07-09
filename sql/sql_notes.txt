@@ -1,0 +1,111 @@
+While a flat file (which we'll discuss in Tip 2, "Understanding Flat Files,") contains only data, a database contains both data and metadata
+
+Metadata is a description of:
+The fields in each record (or columns in a table)
+The location, name, and number of records in each table
+The indexes used to find records in tables
+The value constraints that define the range of values that can be assigned to individual record attributes (or fields)
+The key constraints that define what records can be added to a table and that limit the way in which records can be removed; also the relationship between records in different database tables
+
+
+
+ the metadata for a database is placed in a single table called the data dictionary.
+
+
+
+Currently, SQL limits updateable views to those based on queries on a single table without GROUP BY or HAVING clauses. In addition, to be updateable a view cannot have aggregate functions, calculated columns, or a SELECT DISTINCT clause. And, finally, the view must contain a table key column, and any columns excluded from the view must be NULL-able in the base table.
+
+
+The schema is more of a "container" for objects than just a "grouping" of related tables because a schema includes
+tables
+views
+assertions
+privileges
+character sets
+collaitons
+translations
+
+
+
+
+CREATE DOMAIN STATE_CODE AS CHAR(2)
+   CONSTRAINT VALID_STATE_ABBREVIATION
+   CHECK (VALUE IN ('AL', 'AK', 'AZ', 'CO', 'CT', ...  ))
+CREATE TABLE CUSTOMER
+   (NAME     VARCHAR(25),
+    ADDRESS  VARCHAR(35),
+    CITY     VARCHAR(20),
+    STATE    STATE_CODE, --chk the type
+    ZIP CODE INTEGER)
+The beauty of defining a domain is that you can change it on the fly without having to alter the structure of the table or recompile any existing stored procedures or application programs.
+
+
+
+ There are seven types of constraints: assertions, domains, check constraints, foreign key constraints, primary key constraints, not 
+null, and uniqueness constraints
+
+Data definition language (DDL) is the set of SQL statements (ALTER, CREATE, DROP, GRANT)
+
+Data Control Language (DCL)
+commit
+rollback
+grant
+revoke
+
+
+If you use one of the aggregate functions on a column that has a NULL in a row, the result of the function will be indeterminate (that is, NULL). 
+
+
+
+
+
+SELECT C.color
+FROM Colors AS C
+WHERE NOT EXISTS(SELECT *
+                 FROM Products AS P
+                 WHERE C.color = P.color);
+vs
+SELECT C.color
+FROM Colors AS C
+WHERE C.color NOT IN (SELECT P.color
+                      FROM Products AS P);
+
+
+The expression "color=NULL" evaluates to UNKNOWN and, according to the rules of three-valued logic, NOT UNKNOWN also evaluates to UNKNOWN.
+ EXISTS uses two-valued predicate logic evaluating to TRUE/FALSE:
+
+
+
+
+To make sure the indexes get used, we need to avoid the use of functions on the indexed columns
+SELECT SUM(sale_amount) AS total_sales
+FROM Sales
+WHERE DATEPART(YEAR, sale_date) = 2009
+  AND DATEPART(MONTH, sale_date) = 1;
+
+change to 
+
+SELECT SUM(sale_amount) AS total_sales
+FROM Sales
+WHERE sale_date >= '20090101'
+  AND sale_date <  '20090201';
+
+
+
+
+
+correlated query.......though wrong result....no compilation error
+SELECT sale_date, sale_amount
+FROM Sales AS S
+WHERE sale_date IN (SELECT sale_date
+                    FROM Calendar AS C
+                    WHERE holiday_name IS NOT NULL);
+
+
+
+
+suppose account_reference is declared as varchar in table
+SELECT account_nbr, account_reference AS account_ref_nbr
+FROM Accounts
+WHERE account_type LIKE 'Business%'
+  AND CAST(account_reference AS INT) > 20;

@@ -1,0 +1,58 @@
+1. A message arriving through a BusinessEvents channel is transformed into an
+event. (At design time you create an event type for this purpose, with the
+appropriate properties.) The event instance is then asserted into the Rete
+network, an in-memory network of objects based on the Rete algorithm which
+enables fast matching of facts with rule dependencies.
+2. The presence of this new event in the Rete network causes the inference
+engine to check for rules that are designed to be triggered when this event is
+asserted.
+3. A rule that has is triggered by this event executes. It may make changes to
+concept instances, create an event and send it to a channel (and out of the
+BusinessEvents application to some destination), and so on. The rule then
+consumes the event unless there is a reason not to do so.
+
+
+
+
+Messages enter and leave the system
+through channels.BusinessEvents events are created using data in incoming
+messages. Outgoing messages are created using data from events
+
+
+When a destination receives a message, it creates an event to hold the
+information from the message. Events from channels are automatically asserted
+into the Rete network, where their presence generally triggers rules
+
+
+Simple events can also be created by rules and rule functions. Events created this
+way are not asserted automatically because they could be outbound events, to be
+sent to a destination. You must explicitly assert such internally created events as
+needed.
+
+
+
+Just as messages have properties and a message body,
+events can have properties and payloads.
+
+
+Concept and event
+types use inheritance in a similar way to Java classes.
+
+
+
+TIBCO BusinessEvents provides various kinds of events. Simple events are used
+in this tutorial to bring messages into the application. In addition you can use
+SOAP events, time events and advisory events, which you can learn about in the
+product documentation.
+
+Simple event types are created at
+design time.
+Simple events can also be created by rules and rule functions.Events created this
+way are not asserted automatically because they could be intended for use as
+outbound events, to be sent to a destination.
+
+
+
+Just as destinations
+generally have default events, events generally have default destinations
+

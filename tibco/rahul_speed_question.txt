@@ -1,0 +1,30 @@
+why dont we have Allstate mobile simulators available for testing at offshore.
+wat do we get from AOG,SPA and RAS systems
+wat is prolink, partners
+where is tibco streambase, tibco broker silverfabric  used, which is there in architecture
+what is OPODS- single instance
+
+Start the following services in this exact order:
+PlatformAsynch
+MapServices
+Rest of Platform
+Edge
+Why is there a specific order?
+
+
+2.	PlatformAsyncHVServices
+What is meant by HV ?
+
+Why are there some service over HTTPS rather than twm
+
+
+for roadsmart wat are the UIs available
+wat is gateway - RoadSmart Gateway or RoadSmart Mobile
+
+
+wat is lxv,lxe
+
+wat are partners, bmw broker service
+
+
+GHR as a partner?

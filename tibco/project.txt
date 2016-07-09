@@ -1,0 +1,78 @@
+ADP (fka Speed), MMA, GHRescue
+
+For the new GH Rescue branding a new partner code was created to separate out the calls
+
+Whom should I contact in the deployment team
+
+key performance index- KPi
+
+AS will have data for 24 hrs, but the db will have data every hr. there is a multiplier config maintained
+
+
+to check the processes in ear, open deplyment formder in desigher, open ear, open par and check processes
+
+shreedeep said that he would update the KPi doc after june release. find out. 
+
+
+
+
+
+Folks when we do deployment please use these DL’s: ARS Digital Platform Web Deployment ARSDigitalPlatformWebDeployment@allstate.com
+
+
+
+
+connected consmer platfor and open api
+
+developer.allstate.com
+
+
+if we dont find  the digital provider , we go to csr
+
+
+
+sdlc smlc
+
+
+GHR mobile app?
+
+
+
+We have started testing for Text To Web project in QA01 env. Currently we are not able to see the status change in mobile web status screen when the status is changed from RoadSmart Gateway or RoadSmart Mobile.
+
+
+
+The field destination business name is used to store the dealership name or any business name where the vehicle is being towed.
+So this applies only to Tow services, there is no destination address required for any other type of service.
+
+
+
+
+RSP Assist communicates with Roadside Assistance Providers who offer car breakdown services by two means:
+•	Mobile application
+•	Gateway – a web based application
+
+
+
+
+Then using the same GUID and Request Id you can open the Text to Web app ??
+
+
+for each service we have 4 seeders and 1 proxy
+
+
+MMA - Master Membership Application
+
+
+
+[11/30/2015 5:45 PM] Das Sharma, Nilaj (ASPL): 
+nmand
+[11/30/2015 5:45 PM] Das Sharma, Nilaj (ASPL): 
+rkri2
+[11/30/2015 5:45 PM] Das Sharma, Nilaj (ASPL): 
+they are MMA developers in Home Office
+
+
+
+
+inman,beacon are parters?

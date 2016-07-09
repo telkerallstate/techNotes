@@ -1,0 +1,8 @@
+if mesgs are pending on bwpm.evetnt queue.raise incident to start eh dtaprovider/receiver
+
+no reciever on bwpm.error queue- msgs accumulate if bwpm is not able to ssend msgs to db
+
+csrbwpmref -space contains list of processids
+
+
+purchaseordernumber value notiefies taht service was booked

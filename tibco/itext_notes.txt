@@ -1,0 +1,23 @@
+PdfWriter writer = PdfWriter.getInstance(
+document, new FileOutputStream(RESULT));
+
+
+PdfContentByte canvas = writer.getDirectContentUnder();
+writer.setCompressionLevel(0);
+
+canvas.saveState(); // q
+canvas.beginText(); // BT
+canvas.moveText(36, 788); // 36 788 Td
+canvas.setFontAndSize(
+BaseFont.createFont(), 12); // /F1 12 Tf
+canvas.showText("Hello World"); // (Hello World)Tj
+canvas.endText(); // ET
+canvas.restoreState(); // Q
+document.close();
+
+
+
+
+By using the setCompressionLevel() method with a parameter of 0, you avoid
+compressing the stream. This allows you to read the PDF syntax when opening the file
+in a text editor.

@@ -1,0 +1,10 @@
+hawkagent - collectio of rules, monitoring logic
+
+rulebases
+1- applicaitonstate
+2- heapsize
+3- queuesize
+
+
+cluster has nodes
+

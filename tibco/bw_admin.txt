@@ -1,0 +1,45 @@
+Two Microsoft Windows Services must be running for the server to be available
+e TIBCO administration server for your domain
+e TIBCO Hawk Agent service
+
+
+
+TIBCO Administrator is the preferred monitoring and management application 
+for TIBCO ActiveMatrix BusinessWorks. However, the process engine is 
+instrumented with a TIBCO Hawk microagent that can be used to perform most 
+administrative functions
+
+TIBCO Enterprise Management AdvisorTM (EMA) extends TIBCO Administrator 
+and allows you to automate the management of resources in your enterprise.
+. TIBCO EMA allows managed resources to automatically communicate their availability 
+with each other and react accordingly.
+
+
+
+There are three ’locations’ or ‘containers’ that a Business Work EAR can be deployed to. These are:
+ 
+1) Business Work Standalone Service Engine
+ 
+2) Business Work Service Engine Implementation Type (BWSE-IT) within an ActiveMatrix Node
+ 
+3) Business Work Service Container (BW-SC)
+ 
+The first two scenarios do not require any special effort during deployment and usually can be done through the admin interfaces (bw-admin for standalone and amx-admin for BWSE-IT). But if one wishes to deploy an EAR to a Service Container then we need to setup the container and make a change in the Process Archive. This tutorial is for a Windows-based system.---
+http://tibcobw.webs.com/apps/blog/show/9777707-deploying-to-a-business-work-service-container
+
+
+
+
+
+While monitoring EMS queues in Admin, we see two params, Receiver Count and Consumer Count; In most of the scenario's, we see that value of these two params is same.
+
+What all can be possible options, where we can see different values in Receiver and Consumer count.
+
+Consumers are the physical connections that established to that queue, where bridge is also receiver, try creating a bridge and you see the change in that.
+
+
+
+
+However in situations where memory pool is quite high and there is no fear of memory shortage, you can specify value of MAX JOB as 0 (zero). In this case, unlimited numbers of process instances get loaded in the memory without any paging done.
+
+same goes with flowlimit

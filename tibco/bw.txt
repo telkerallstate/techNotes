@@ -1,0 +1,94 @@
+Do not persist data in the Active/Active environments (JMS Persistant mode/file activities). Process: BusinessProcess\initKPITimer.process
+
+
+
+
+As you all know the render xml function does not allow to map a repeating element in to a non repeating structure. 
+
+
+
+what is the difference between the tib:render xml function in xpath and render xml activity?
+By using render xml, you get the flexibility of formatting msg with default namespace prefix.
+
+tib:render-xml(<< element or document >>, << optional omit-header >>, << optional pretty-pretty >>)   ?? pretty print
+If you set the second parameter to true, the XML header is not printed in the output.
+eg
+contains($_globalVariables/ns1:GlobalVariables/Application/Constants/SequencePrefix, substring($Start/pfx27:GetSRWDDetailsMessageIn/Request/ns5:getSRWDDetailsRequest/ns5:requestId,1, 1))='true'
+
+
+
+
+TIBCO can load balance two servers in a fault-tolerant configuration for additional reliability.
+
+
+A backup server detects a failure of the primary in either of two ways:
+
+Heartbeat Failure—The primary server sends heartbeat messages to the backup server to indicate that it is still operating. When a network failure stops the servers from communicating with each other, the backup server detects the interruption in the steady stream of heartbeats. For details, see Heartbeat Parameters.
+• Connection Failure—The backup server can detect the failure of its TCP connection with the primary server. When the primary process terminates unexpectedly, the backup server detects the broken connection.
+
+Shared State
+The primary server and backup server must share the same state. Server state includes three categories of information:
+
+persistent message data (for queues and topics)
+client connections of the primary server
+metadata about message delivery
+
+During a failover, the backup server re-reads all shared state information.
+
+
+
+
+
+
+Several options are available for implementing shared storage using a combination of hardware and software.
+
+TIBCO’s Hardware Options
+Consider these examples of commonly-sold hardware options for shared storage:
+
+Dual-Port SCSI device
+Storage Area Network (SAN)
+Network Attached Storage (NAS)
+
+Software Options
+Consider these examples of commonly-sold software options:
+
+Cluster Server (CS): A cluster server monitors the EMS server processes and their host computers, and ensures that exactly one server process is running at all times. If the primary server fails, the CS restarts it; if it fails to restart the primary, it starts the backup server instead.
+Clustered File System (CFS):  A clustered file system lets the two EMS server processes run simultaneously. It even lets both servers mount the shared file system simultaneously. However, the CFS assigns the lock to only one server process at a time. The CFS also manages operating system caching of file data, so the backup server has an up-to-date view of the file system (instead of a stale cache). 
+
+
+
+Messages with PERSISTENT delivery mode are stored, and are available in the event of primary server failure. Messages with NON_PERSISTENT delivery mode are not available if the primary server fails
+
+
+
+
+The tibemsd server creates three files to store shared state.
+meta.db
+sync-msgs.db
+async-msgs.db
+
+
+
+
+
+TIBCO provides loadbalancing only if we use TIBCO Rendezvous as transport. However, for implementing loadbalancing when EMS is used as a transport we have to do it on EMS server leve
+
+
+load balancing and ft..both can use activeactive or active passive approach
+
+The one potential disadvantage of setting up your load balancers in Active/Active mode is that you run them near full capacity. What this would mean is that unless you have a spare load balancer to commission and make operational in the network in the event of a load balancer failure your network servers would appear to run slows of user sessions would time out. - See more at: http://loadbalancerblog.com/blog/2013/01/understanding-active-passive-activeactive-load-balancing#sthash.HTBYrzDr.dpuf
+
+
+
+
+
+ TIBCO supports Arrays and Collections but not HashMaps. You may also notice that the root element always takes the class name, but its child elements take their name from the instance variables.
+
+
+
+Optionally, you may use a Java Schema shared resource; otherwise, you have to specify the Library and the Class. The main advantage of using a Java Schema is that you use it as a reference in the Output Editor of the Start activity.
+
+
+
+
+normalise-space(   ?????
